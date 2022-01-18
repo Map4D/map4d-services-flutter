@@ -30,8 +30,11 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      platformVersion =
-          await Map4dServices.platformVersion ?? 'Unknown platform version';
+      final detail = await MFServices.places.getPlaceDetail('5c88df71d2c05acd14848f9e');
+      platformVersion = detail['result']['name'];
+
+      // final textSearch = await MFServices.places.getPlaceByTextSearch('abc', types: ['atm'], datetime: DateTime.now(), location: const MFLocationComponent(latitude: 16.075177, longitude: 108.220228));
+      // platformVersion = textSearch['result'][0]['name'];
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
