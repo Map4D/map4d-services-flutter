@@ -73,6 +73,24 @@ class _MyAppState extends State<MyApp> {
     print('Viewbox Search: $places');
   }
 
+  void _geocode() async {
+    final geos = await MFServices.geocodes.getGeocode(
+      location: const MFLocationComponent(latitude: 16.024634, longitude: 108.209217),
+      address: '31 Lê Văn Duyệt',
+      viewbox: const MFViewboxComponent(southwest: MFLocationComponent(latitude: 16.056453967981348, longitude: 108.19387435913086),
+                                        northeast: MFLocationComponent(latitude: 16.093031550262133, longitude: 108.25927734375))
+    );
+    print('Geocode: $geos');
+  }
+
+  void _directions() async {}
+
+  void _routeETA() async {}
+
+  void _routeMatrix() async {}
+
+  void _routeGraph() async {}
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -84,23 +102,53 @@ class _MyAppState extends State<MyApp> {
           ListTile(
             leading: const Icon(Icons.place),
             title: const Text('Place Detail'),
-            onTap: _placeDetail,),
+            onTap: _placeDetail,
+          ),
           ListTile(
             leading: const Icon(Icons.place),
             title: const Text('Auto Suggest'),
-            onTap: _autoSuggest,),
+            onTap: _autoSuggest,
+          ),
           ListTile(
             leading: const Icon(Icons.place),
             title: const Text('Text Search'),
-            onTap: _textSearch,),
+            onTap: _textSearch,
+          ),
           ListTile(
             leading: const Icon(Icons.place),
             title: const Text('Nearby Search'),
-            onTap: _nearbySearch,),
+            onTap: _nearbySearch,
+          ),
           ListTile(
             leading: const Icon(Icons.place),
             title: const Text('Viewbox Search'),
-            onTap: _viewboxSearch,),
+            onTap: _viewboxSearch,
+          ),
+          ListTile(
+            leading: const Icon(Icons.adjust),
+            title: const Text('Geocode'),
+            onTap: _geocode,
+          ),
+          ListTile(
+            leading: const Icon(Icons.edit_road),
+            title: const Text('Directions'),
+            onTap: _directions,
+          ),
+          ListTile(
+            leading: const Icon(Icons.edit_road),
+            title: const Text('Route ETA'),
+            onTap: _routeETA,
+          ),
+          ListTile(
+            leading: const Icon(Icons.edit_road),
+            title: const Text('Route Matrix'),
+            onTap: _routeMatrix,
+          ),
+          ListTile(
+            leading: const Icon(Icons.edit_road),
+            title: const Text('Route Graph'),
+            onTap: _routeGraph,
+          ),
         ],),
       ),
     );

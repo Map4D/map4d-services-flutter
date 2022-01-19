@@ -1,3 +1,27 @@
+enum MFTravelMode {
+  car, bike, foot, motorcycle
+}
+
+enum MFLanguageResult {
+  en, vi
+}
+
+enum MFRouteWeighting {
+  shortest, fastest, balance
+}
+
+enum MFRouteTypeAvoid {
+  motorway, trunk, ferry, bridge, tunnel
+}
+
+class MFRouteAvoid {
+
+  Object toJson() {
+    final Map<String, Object> json = <String, Object>{};
+    return json;
+  }
+}
+
 class MFLocationComponent {
 
   final double latitude;

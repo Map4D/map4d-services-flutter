@@ -1,6 +1,6 @@
 part of 'services.dart';
 
-class MFPlaceService {
+class MFPlacesService {
 
   /// Place detail
   Future<Map<String, dynamic>> getPlaceDetail(String id) async {
