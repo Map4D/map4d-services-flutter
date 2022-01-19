@@ -24,15 +24,34 @@
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
+  /* Place | Place Detail */
   if ([@"place#detail" isEqualToString:call.method]) {
     NSString *placeId = call.arguments[@"id"];
-    NSLog(@"SS | get place detail: %@", placeId);
     [_places fetchPlaceDetailById:placeId result:result];
     return;
   }
   
+  /* Place | Text Search */
   if ([@"place#text-search" isEqualToString:call.method]) {
-    [_places fetchPlacesWithTextSearchData:call.arguments result:result];
+    [_places fetchTextSearchWithData:call.arguments result:result];
+    return;
+  }
+  
+  /* Place | Nearby Search */
+  if ([@"place#nearby-search" isEqualToString:call.method]) {
+    [_places fetchNearbySearchWithData:call.arguments result:result];
+    return;
+  }
+  
+  /* Place | Viewbox Search */
+  if ([@"place#viewbox-search" isEqualToString:call.method]) {
+    [_places fetchViewboxSearchWithData:call.arguments result:result];
+    return;
+  }
+  
+  /* Place | Suggestion */
+  if ([@"place#autosuggest" isEqualToString:call.method]) {
+    [_places fetchSuggestionsWithData:call.arguments result:result];
     return;
   }
   

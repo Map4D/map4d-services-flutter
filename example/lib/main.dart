@@ -8,6 +8,14 @@ void main() {
   runApp(const MyApp());
 }
 
+final List<ListTile> _list = <ListTile>[
+  const ListTile(title: Text('Place Detail'),),
+  const ListTile(title: Text('Auto Suggest'),),
+  const ListTile(title: Text('Text Search'),),
+  const ListTile(title: Text('Nearby Search'),),
+  const ListTile(title: Text('Viewbox Search'),),
+];
+
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -16,37 +24,53 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
 
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
+  void _placeDetail() async {
+    final detail = await MFServices.places.getPlaceDetail('5c88df71d2c05acd14848f9e');
+    //detail['result']['name'];
+    print('Place Detail: $detail');
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      final detail = await MFServices.places.getPlaceDetail('5c88df71d2c05acd14848f9e');
-      platformVersion = detail['result']['name'];
+  void _autoSuggest() async {
+    final places = await MFServices.places.getPlacesSuggestion('Tam Giang',
+      location: const MFLocationComponent(latitude: 16.575619, longitude: 107.530756),
+      acronym: false,
+    );
+    print('Auto Suggest: $places');
+  }
 
-      // final textSearch = await MFServices.places.getPlaceByTextSearch('abc', types: ['atm'], datetime: DateTime.now(), location: const MFLocationComponent(latitude: 16.075177, longitude: 108.220228));
-      // platformVersion = textSearch['result'][0]['name'];
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
+  void _textSearch() async {
+    final places = await MFServices.places.getPlacesByTextSearch('abc',
+      types: ['atm'],
+      datetime: DateTime.now(),
+      location: const MFLocationComponent(latitude: 16.075177, longitude: 108.220228)
+    );
+    //textSearch['result'][0]['name'];
+    print('Text Search: $places');
+  }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
+  void _nearbySearch() async {
+    final places = await MFServices.places.getPlacesByNearbySearch(
+      const MFLocationComponent(latitude: 16.075177, longitude: 108.220228),
+      20000,
+      text: 'Sịa',
+      tags: ['point'],
+      types: ['point'],
+      datetime: DateTime.now(),
+    );
+    print('Nearby Search: $places');
+  }
 
-    setState(() {
-      _platformVersion = platformVersion;
-    });
+  void _viewboxSearch() async {
+    final places = await MFServices.places.getPlacesByViewboxSearch(
+      const MFViewboxComponent(southwest: MFLocationComponent(latitude: 16.056453967981348, longitude: 108.19387435913086),
+                               northeast: MFLocationComponent(latitude: 16.093031550262133, longitude: 108.25927734375)),
+      text: 'a',
+      tags: ['Coopmart'],
+      types: ['atm'],
+      datetime: DateTime.now(),
+    );
+    print('Viewbox Search: $places');
   }
 
   @override
@@ -54,11 +78,30 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Map4D Services'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
-        ),
+        body: ListView(children: [
+          ListTile(
+            leading: const Icon(Icons.place),
+            title: const Text('Place Detail'),
+            onTap: _placeDetail,),
+          ListTile(
+            leading: const Icon(Icons.place),
+            title: const Text('Auto Suggest'),
+            onTap: _autoSuggest,),
+          ListTile(
+            leading: const Icon(Icons.place),
+            title: const Text('Text Search'),
+            onTap: _textSearch,),
+          ListTile(
+            leading: const Icon(Icons.place),
+            title: const Text('Nearby Search'),
+            onTap: _nearbySearch,),
+          ListTile(
+            leading: const Icon(Icons.place),
+            title: const Text('Viewbox Search'),
+            onTap: _viewboxSearch,),
+        ],),
       ),
     );
   }

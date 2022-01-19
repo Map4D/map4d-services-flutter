@@ -6,74 +6,63 @@
 //
 
 #import "PlacesService.h"
-#import <Map4dServices/Map4dServices.h>
-
-@interface PlacesService ()
-@property(nonatomic, readonly, nonnull) MFServices *services;
-@end
+#import "SClient.h"
+#import "SConverter.h"
 
 @implementation PlacesService
-
-- (instancetype)init {
-  self = [super init];
-  if (self) {
-    _services = [[MFServices alloc] init];
-  }
-  return self;
-}
 
 - (void)fetchPlaceDetailById:(NSString *)placeId result:(FlutterResult)result {
   
   NSString *path = [@"/sdk/place/detail/" stringByAppendingString:placeId];
   MFServiceRequest *request = [[MFServiceRequest alloc] initWithPath:path];
-  
-  [_services dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, id<MFServiceError> _Nullable error) {
-    if (error != nil) {
-      result(@{
-        @"code": error.code,
-        @"message": error.message
-      });
-    }
-    
-    NSError *parseError = nil;
-    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
-    NSLog(@"SS | dictionary: %@", dictionary);
-    result(dictionary);
-  }];
+  [SClient fireRequest:request result:result];
 }
 
-- (void)fetchPlacesWithTextSearchData:(NSDictionary *)data result:(FlutterResult)result {
+- (void)fetchTextSearchWithData:(NSDictionary *)data result:(FlutterResult)result {
+  MFServiceRequest *request = [[MFServiceRequest alloc] initWithPath:@"/sdk/place/text-search"];
   MFTextSearchParams *params = [[MFTextSearchParams alloc] initWithText:data[@"text"]];
   
   params.types = data[@"types"];
-
-  NSDictionary *location = data[@"location"];
-  if (location != nil) {
-    params.location = [[MFLocationComponent alloc] initWithLatitude:[location[@"lat"] doubleValue]
-                                                          longitude:[location[@"lng"] doubleValue]];
-  }
+  params.location = [SConverter toLocationComponent:data[@"location"]];
+  params.datetime = [SConverter toDate:data[@"datetime"]];
   
-  NSNumber *datetime = data[@"datetime"];
-  if (datetime != nil) {
-    params.datetime = [NSDate dateWithTimeIntervalSince1970:datetime.longValue / 1000.];
-  }
-  
-  MFServiceRequest *request = [[MFServiceRequest alloc] initWithPath:@"/sdk/place/text-search"];
   request.params = params;
+  [SClient fireRequest:request result:result];
+}
+
+- (void)fetchNearbySearchWithData:(NSDictionary *)data result:(FlutterResult)result {
+  MFServiceRequest *request = [[MFServiceRequest alloc] initWithPath:@"/sdk/place/nearby-search"];
+  MFNearbySearchParams *params = [[MFNearbySearchParams alloc] initWithLocation:[SConverter toLocationComponent:data[@"location"]]
+                                                                         radius:[SConverter toInt64:data[@"radius"]]
+                                                                           text:data[@"text"]];
+  params.types = data[@"types"];
+  params.tags = data[@"tags"];
+  params.datetime = [SConverter toDate:data[@"datetime"]];
   
-  [_services dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, id<MFServiceError>  _Nullable error) {
-    if (error != nil) {
-      result(@{
-        @"code": error.code,
-        @"message": error.message
-      });
-    }
-    
-    NSError *parseError = nil;
-    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
-    NSLog(@"SS | dictionary: %@", dictionary);
-    result(dictionary);
-  }];
+  request.params = params;
+  [SClient fireRequest:request result:result];
+}
+
+- (void)fetchViewboxSearchWithData:(NSDictionary *)data result:(FlutterResult)result {
+  MFServiceRequest *request = [[MFServiceRequest alloc] initWithPath:@"/sdk/place/viewbox-search"];
+  MFViewboxSearchParams *params = [[MFViewboxSearchParams alloc] initWithViewbox:[SConverter toViewbox:data[@"viewbox"]]
+                                                                            text:data[@"text"]];
+  params.types = data[@"types"];
+  params.tags = data[@"tags"];
+  params.datetime = [SConverter toDate:data[@"datetime"]];
+  
+  request.params = params;
+  [SClient fireRequest:request result:result];
+}
+
+- (void)fetchSuggestionsWithData:(NSDictionary *)data result:(FlutterResult)result {
+  MFServiceRequest *request = [[MFServiceRequest alloc] initWithPath:@"/sdk/autosuggest"];
+  MFSuggestionParams *params = [[MFSuggestionParams alloc] initWithText:data[@"text"]];
+  params.acronym = [SConverter toBool:data[@"acronym"]];
+  params.location = [SConverter toLocationComponent:data[@"location"]];
+  
+  request.params = params;
+  [SClient fireRequest:request result:result];
 }
 
 @end

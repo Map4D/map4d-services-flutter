@@ -14,7 +14,14 @@
 @interface PlacesService : NSObject
 
 - (void)fetchPlaceDetailById:(NSString *)placeId result:(FlutterResult)result;
-- (void)fetchPlacesWithTextSearchData:(NSDictionary *)data result:(FlutterResult)result;
+
+- (void)fetchTextSearchWithData:(NSDictionary *)data result:(FlutterResult)result;
+
+- (void)fetchNearbySearchWithData:(NSDictionary *)data result:(FlutterResult)result;
+
+- (void)fetchViewboxSearchWithData:(NSDictionary *)data result:(FlutterResult)result;
+
+- (void)fetchSuggestionsWithData:(NSDictionary *)data result:(FlutterResult)result;
 
 @end
 
