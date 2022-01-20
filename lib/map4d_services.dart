@@ -7,8 +7,8 @@ export 'src/components.dart'
     MFTravelMode,
     MFRouteWeighting,
     MFLanguageResult,
-    MFRouteAvoid,
-    MFRouteTypeAvoid;
+    MFRouteRestriction,
+    MFRouteType;
 
 export 'src/services.dart'
   show
