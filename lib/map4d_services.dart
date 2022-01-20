@@ -8,13 +8,10 @@ export 'src/components.dart'
     MFRouteWeighting,
     MFLanguageResult,
     MFRouteAvoid,
-    MFRouteTypeAvoid
-  ;
+    MFRouteTypeAvoid;
 
 export 'src/services.dart'
   show
     MFServices,
     MFPlacesService,
-    MFRoutesService,
-    MFGeocodesService
-  ;
+    MFRoutesService;

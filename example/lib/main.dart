@@ -74,7 +74,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _geocode() async {
-    final geos = await MFServices.geocodes.getGeocode(
+    final geos = await MFServices.places.getGeocode(
       location: const MFLocationComponent(latitude: 16.024634, longitude: 108.209217),
       address: '31 Lê Văn Duyệt',
       viewbox: const MFViewboxComponent(southwest: MFLocationComponent(latitude: 16.056453967981348, longitude: 108.19387435913086),
