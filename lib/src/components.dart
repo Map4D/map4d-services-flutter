@@ -1,17 +1,27 @@
 enum MFTravelMode {
-  car, bike, foot, motorcycle
+  car,
+  bike,
+  foot,
+  motorcycle,
 }
 
 enum MFLanguageResult {
-  en, vi
+  en,
+  vi,
 }
 
 enum MFRouteWeighting {
-  shortest, fastest, balance
+  shortest,
+  fastest,
+  balance,
 }
 
 enum MFRouteTypeAvoid {
-  motorway, trunk, ferry, bridge, tunnel
+  motorway,
+  trunk,
+  ferry,
+  bridge,
+  tunnel,
 }
 
 class MFRouteAvoid {

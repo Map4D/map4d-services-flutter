@@ -1,20 +1,8 @@
 #import "Map4dServicesPlugin.h"
-#import "PlacesService.h"
-
-@interface Map4dServicesPlugin ()
-
-@property(nonatomic, readonly, nonnull) PlacesService* places;
-
-@end
+#import "SRequest.h"
+#import "SClient.h"
 
 @implementation Map4dServicesPlugin
-
-- (instancetype)init {
-  if (self = [super init]) {
-    _places = [[PlacesService alloc] init];
-  }
-  return self;
-}
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
   FlutterMethodChannel* channel = [FlutterMethodChannel methodChannelWithName:@"map4d_services"
@@ -24,34 +12,65 @@
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
+  
+  /* Geocode */
+  if ([@"geocode#geocode" isEqualToString:call.method]) {
+    [SClient fireRequest:[SRequest buildGeocodingRequestWithData:call.arguments] result:result];
+    return;
+  }
+
   /* Place | Place Detail */
   if ([@"place#detail" isEqualToString:call.method]) {
     NSString *placeId = call.arguments[@"id"];
-    [_places fetchPlaceDetailById:placeId result:result];
+    [SClient fireRequest:[SRequest buildPlaceDetailRequestWithId:placeId] result:result];
     return;
   }
   
   /* Place | Text Search */
   if ([@"place#text-search" isEqualToString:call.method]) {
-    [_places fetchTextSearchWithData:call.arguments result:result];
+    [SClient fireRequest:[SRequest buildTextSearchRequestWithData:call.arguments] result:result];
     return;
   }
   
   /* Place | Nearby Search */
   if ([@"place#nearby-search" isEqualToString:call.method]) {
-    [_places fetchNearbySearchWithData:call.arguments result:result];
+    [SClient fireRequest:[SRequest buildNearbySearchRequestWithData:call.arguments] result:result];
     return;
   }
   
   /* Place | Viewbox Search */
   if ([@"place#viewbox-search" isEqualToString:call.method]) {
-    [_places fetchViewboxSearchWithData:call.arguments result:result];
+    [SClient fireRequest:[SRequest buildViewboxSearchRequestWithData:call.arguments] result:result];
     return;
   }
   
   /* Place | Suggestion */
   if ([@"place#autosuggest" isEqualToString:call.method]) {
-    [_places fetchSuggestionsWithData:call.arguments result:result];
+    [SClient fireRequest:[SRequest buildSuggestionsRequestWithData:call.arguments] result:result];
+    return;
+  }
+  
+  /* Route | Directions */
+  if ([@"route#route" isEqualToString:call.method]) {
+    [SClient fireRequest:[SRequest buildDirectionsRequestWithData:call.arguments] result:result];
+    return;
+  }
+  
+  /* Route | ETA */
+  if ([@"route#eta" isEqualToString:call.method]) {
+    [SClient fireRequest:[SRequest buildRouteETARequestWithData:call.arguments] result:result];
+    return;
+  }
+  
+  /* Route | Matrix */
+  if ([@"route#matrix" isEqualToString:call.method]) {
+    [SClient fireRequest:[SRequest buildDistanceMatrixRequestWithData:call.arguments] result:result];
+    return;
+  }
+  
+  /* Route | Graph */
+  if ([@"route#graph" isEqualToString:call.method]) {
+    [SClient fireRequest:[SRequest buildGraphRouteRequestWithData:call.arguments] result:result];
     return;
   }
   
