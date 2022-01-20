@@ -1,15 +1,14 @@
-# map4d_services
+# Map4dServices for Flutter
+[![map4d](https://img.shields.io/badge/map4d-services-orange)](https://map4d.vn/)
+[![platform](https://img.shields.io/badge/platform-flutter-45d2fd.svg)](https://flutter.dev/)
+[![pub package](https://img.shields.io/pub/v/map4d_services.svg)](https://pub.dev/packages/map4d_services)
 
-A new flutter plugin project.
+A flutter plugin for integrating [Map4D Services](http://api.map4d.vn/sdk/docs/index.html) in iOS and Android applications.
 
-## Getting Started
+## Requirements
+- Android SDK 21+
+- iOS 9.3+
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+## Installing
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
+## Example Usage
