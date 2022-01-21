@@ -62,6 +62,10 @@ class MFRouteRestriction {
     return MFRouteRestriction._(null, null, null, path, types);
   }
 
+  static MFRouteRestriction restrictRouteTypes(List<MFRouteType>? types) {
+    return MFRouteRestriction._(null, null, null, null, types);
+  }
+
   Object toJson() {
     final Map<String, Object> json = <String, Object>{};
     if (_location != null) {

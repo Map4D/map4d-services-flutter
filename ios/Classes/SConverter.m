@@ -103,9 +103,39 @@
   return MFLanguageResultVietnamese;
 }
 
-+ (MFRouteRestriction *)toRouteAvoid:(NSDictionary *)data {
-  //TODO:
-  return nil;
++ (MFRouteRestriction *)toRouteRestriction:(NSDictionary *)data {
+  MFLocationComponent *location = [SConverter toLocationComponent:data[@"location"]];
+  NSUInteger radius = data[@"radius"] != nil ? [SConverter toInt64:data[@"radius"]] : 0;
+  MFViewboxComponent *viewbox = [SConverter toViewbox:data[@"viewbox"]];
+  NSArray<MFLocationComponent *> *path = [SConverter toLocationComponentArray:data[@"path"]];
+  NSArray<NSNumber *> *types = data[@"types"];
+  
+  MFRouteRestriction *result = nil;
+  if (location != nil) {
+    result = [[MFRouteRestriction alloc] initWithLocation:location radius:radius];
+  }
+  else if (viewbox != nil) {
+    result = [[MFRouteRestriction alloc] initWithViewbox:viewbox];
+  }
+  else if (path != nil) {
+    result = [[MFRouteRestriction alloc] initWithPath:path];
+  }
+  
+  if (types != nil && types.count > 0) {
+    if (result != nil) {
+      for (NSUInteger i = 0; i < types.count; i++) {
+        [result avoidRouteType:[SConverter toRouteType:types[i]]];
+      }
+    }
+    else {
+      result = [[MFRouteRestriction alloc] initWithRouteType:[SConverter toRouteType:types[0]]];
+      for (NSUInteger i = 1; i < types.count; i++) {
+        [result avoidRouteType:[SConverter toRouteType:types[i]]];
+      }
+    }
+  }
+  
+  return result;
 }
 
 + (MFRouteType)toRouteType:(NSNumber *)data {
@@ -125,19 +155,6 @@
       NSAssert(false, @"Unknown route type");
       return MFRouteTypeMotorway;
   }
-}
-
-+ (NSArray<MFRouteTypeRestriction *> *)toRouteTypeAvoidArray:(NSArray *)data {
-  if (data == nil || ![data isKindOfClass:[NSArray class]]) {
-    return nil;
-  }
-  
-  NSMutableArray<MFRouteTypeRestriction *> *types = [NSMutableArray arrayWithCapacity:data.count];
-  for (NSNumber *index in data) {
-    [types addObject:[[MFRouteTypeRestriction alloc] initWithType:[SConverter toRouteType:index]]];
-  }
-
-  return types;
 }
 
 @end

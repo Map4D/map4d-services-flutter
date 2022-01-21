@@ -27,8 +27,7 @@
 + (MFRouteWeighting)toRouteWeighting:(NSNumber *)data;
 + (MFLanguageResult)toLanguageResult:(NSNumber *)data;
 
-+ (MFRouteRestriction *)toRouteAvoid:(NSDictionary *)data;
-+ (NSArray<MFRouteTypeRestriction *> *)toRouteTypeAvoidArray:(NSArray *)data;
++ (MFRouteRestriction *)toRouteRestriction:(NSDictionary *)data;
 
 @end
 
