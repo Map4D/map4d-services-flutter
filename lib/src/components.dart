@@ -1,10 +1,4 @@
-Object locationsToJson(List<MFLocationComponent> locations) {
-  final List<Object> result = <Object>[];
-  for (final MFLocationComponent location in locations) {
-    result.add(location.toJson());
-  }
-  return result;
-}
+import 'utils.dart';
 
 enum MFTravelMode {
   car,
@@ -114,6 +108,13 @@ class MFLocationComponent {
       json['alias'] = alias!;
     }
     return json;
+  }
+
+  static MFLocationComponent? fromJson(Object? json) {
+    if (json != null && json is Map<dynamic, dynamic>) {
+      return MFLocationComponent(latitude: json['lat'], longitude: json['lng']);
+    }
+    return null;
   }
 }
 
