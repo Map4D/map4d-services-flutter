@@ -1,0 +1,4 @@
+enum MFLanguageResult {
+  en,
+  vi,
+}

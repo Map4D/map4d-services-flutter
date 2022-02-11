@@ -107,7 +107,9 @@ class MFPlacesService {
       data['location'] = location.toJson();
     }
 
-    return (await _ServicesChannel.invokeService('place#autosuggest', data))!;
+    final suggestions = await _ServicesChannel.invokeService('place#autosuggest', data);
+
+    return suggestions!;
   }
 
   /// Geocode

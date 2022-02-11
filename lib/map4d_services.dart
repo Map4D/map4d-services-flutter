@@ -8,10 +8,34 @@ export 'src/components.dart'
     MFRouteWeighting,
     MFLanguageResult,
     MFRouteRestriction,
-    MFRouteType;
+    MFRouteType
+  ;
 
 export 'src/services.dart'
   show
     MFServices,
     MFPlacesService,
-    MFRoutesService;
+    MFRoutesService
+  ;
+
+export 'src/results.dart'
+  show
+    MFDirectionsResult,
+    MFRouteResult,
+    MFRouteLegResult,
+    MFRouteStepResult,
+    MFRouteDescriptionResult,
+    MFRouteETAResult,
+    MFDistanceMatrixResult,
+    MFDistanceMatrixRowResult,
+    MFDistanceMatrixElementResult,
+    MFGraphRouteResult,
+    MFGeocodeResult,
+    MFSuggestionResult,
+    MFPlaceResult,
+    MFPlaceDetailResult,
+    MFPlaceMetadataResult,
+    MFPlacePhotoResult,
+    MFPlaceAddressComponentResult
+  ;
+  
