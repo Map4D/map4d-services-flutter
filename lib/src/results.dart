@@ -19,3 +19,4 @@ export 'results/graph_route.dart';
 export 'results/distance_matrix_element.dart';
 export 'results/distance_matrix_row.dart';
 export 'results/distance_matrix.dart';
+export 'results/directions.dart';
