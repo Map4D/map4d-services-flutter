@@ -1,6 +1,6 @@
 import '../results.dart';
 
-abstract class MFSuggestionResult {
+abstract class MFPlaceResult {
   String? get id;
   String get name;
   String get address;
@@ -8,21 +8,21 @@ abstract class MFSuggestionResult {
   List<String> get types;
 }
 
-class MFSuggestionResultImpl implements MFSuggestionResult {
+class MFPlaceResultImpl implements MFPlaceResult {
   final String? _id;
   final String _name;
   final String _address;
   final MFLocationComponent _location;
   final List<String> _types;
 
-  MFSuggestionResultImpl._(this._id, this._name, this._address, this._location, this._types);
+  MFPlaceResultImpl._(this._id, this._name, this._address, this._location, this._types);
 
-  static MFSuggestionResultImpl? fromMap(Object? json) {
+  static MFPlaceResultImpl? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {
       return null;
     }
     
-    return MFSuggestionResultImpl._(
+    return MFPlaceResultImpl._(
       json['id'],
       json['name'],
       json['address'],
@@ -45,5 +45,4 @@ class MFSuggestionResultImpl implements MFSuggestionResult {
 
   @override
   List<String> get types => _types;
-
 }
