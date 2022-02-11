@@ -67,15 +67,6 @@ class MFPlaceDetailResultImpl implements MFPlaceDetailResult {
       }
     }
 
-    final addressComponents = <MFPlaceAddressComponentResult>[];
-    final addressComponentsJson = json['addressComponents'] as List<dynamic>;
-    for (final addressComponentJson in addressComponentsJson) {
-      final addressComponent = MFPlaceAddressComponentResultImp.fromMap(addressComponentJson);
-      if (addressComponent != null) {
-        addressComponents.add(addressComponent);
-      }
-    }
-    
     return MFPlaceDetailResultImpl._(
       json['id'],
       json['name'],
@@ -86,7 +77,7 @@ class MFPlaceDetailResultImpl implements MFPlaceDetailResult {
       (json['tags'] as List<dynamic>).cast<String>(),
       metadatas.isNotEmpty ? metadatas : null,
       photos.isNotEmpty ? photos : null,
-      addressComponents.isNotEmpty ? addressComponents : null,
+      toListPlaceAddressComponent(json['addressComponents']),
       json['objectId'],
     );
   }
