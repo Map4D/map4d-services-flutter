@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/services.dart';
 
-import 'utils.dart';
 import 'components.dart';
 
 part 'channel.dart';

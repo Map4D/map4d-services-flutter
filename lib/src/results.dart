@@ -1,5 +1,5 @@
 export 'components.dart';
-export 'results/results_utils.dart';
+export 'results/utils.dart';
 
 export 'results/geocode.dart';
 export 'results/suggestion.dart';

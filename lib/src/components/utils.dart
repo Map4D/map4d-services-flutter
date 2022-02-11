@@ -1,4 +1,4 @@
-import 'components.dart';
+import '../components.dart';
 
 Object locationsToJson(List<MFLocationComponent> locations) {
   final List<Object> result = <Object>[];
