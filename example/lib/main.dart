@@ -83,7 +83,23 @@ class _MyAppState extends State<MyApp> {
     print('Geocode: $geos');
   }
 
-  void _directions() async {}
+  void _directions() async {
+    List<MFRouteType> routeTypes = <MFRouteType>[MFRouteType.motorway, MFRouteType.tunnel];
+    List<MFLocationComponent> waypoints = <MFLocationComponent>[
+      const MFLocationComponent(latitude: 16.081126855919138, longitude: 108.21412717916483)
+    ];
+    MFRouteRestriction avoid = MFRouteRestriction.restrictCircleArea(
+        const MFLocationComponent(latitude: 16.080611, longitude: 108.218113),
+        30,
+        types: routeTypes);
+    final directions = await MFServices.routes.getDirections(
+        const MFLocationComponent(latitude: 16.08116088350121, longitude: 108.21979357460582),
+        const MFLocationComponent(latitude: 16.08334260545329, longitude: 108.21651589082553),
+        waypoints: waypoints,
+        avoid: avoid
+    );
+    print('Directions: $directions');
+  }
 
   void _routeETA() async {}
 

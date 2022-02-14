@@ -16,6 +16,9 @@ rootProject.allprojects {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url = "https://packages.map4d.vn/repository/maven-public"
+        }
     }
 }
 
@@ -30,6 +33,10 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21
     }
+}
+
+dependencies {
+    implementation 'vn.map4d:Map4dServices:0.99.2'
 }
