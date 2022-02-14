@@ -198,6 +198,9 @@ class SConverter {
     }
     JSONArray originsJsonArray = null;
     List<?> origins = toList(o);
+    if (origins != null && origins.size() > 0) {
+      originsJsonArray = new JSONArray();
+    }
     for (int i = 0; i < origins.size(); ++i) {
       try {
         JSONObject originJsonObject = new JSONObject();
@@ -243,6 +246,30 @@ class SConverter {
     Map<?, ?> data = toMap(o);
     if (data.get("types") != null) {
       StringBuilder resultBuilder = new StringBuilder();
+      List<?> types = toList(data.get("types"));
+      for (int i = 0; i < types.size(); ++i) {
+        Integer type = toInt(types.get(i));
+        switch (type) {
+          case 0:
+            resultBuilder.append("motorway");
+            break;
+          case 1:
+            resultBuilder.append("trunk");
+            break;
+          case 2:
+            resultBuilder.append("ferry");
+            break;
+          case 3:
+            resultBuilder.append("bridge");
+            break;
+          case 4:
+            resultBuilder.append("tunnel");
+            break;
+        }
+        if (i < types.size() - 1) {
+          resultBuilder.append(",");
+        }
+      }
       return resultBuilder.toString();
     }
     return null;

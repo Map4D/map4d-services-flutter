@@ -22,7 +22,8 @@ class SJsonUtils {
     return retMap;
   }
 
-  private static Map<String, Object> toMap(JSONObject object) throws JSONException {
+  @NonNull
+  private static Map<String, Object> toMap(@NonNull JSONObject object) throws JSONException {
     Map<String, Object> map = new HashMap<>();
 
     Iterator<String> keysItr = object.keys();
@@ -42,7 +43,8 @@ class SJsonUtils {
     return map;
   }
 
-  private static List<Object> toList(JSONArray array) throws JSONException {
+  @NonNull
+  private static List<Object> toList(@NonNull JSONArray array) throws JSONException {
     List<Object> list = new ArrayList<>();
     for(int i = 0; i < array.length(); i++) {
       Object value = array.get(i);

@@ -1,5 +1,7 @@
 package vn.map4d.services.map4d_services;
 
+import androidx.annotation.NonNull;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,7 +12,7 @@ import vn.map4d.services.MFRequestParams;
 import vn.map4d.services.MFServiceOptions;
 
 class SRequest {
-  static MFServiceOptions buildGeocodingRequestWithData(MethodCall call) {
+  static MFServiceOptions buildGeocodingRequestWithData(@NonNull MethodCall call) {
     MFServiceOptions.Builder serviceOptionsBuilder = new MFServiceOptions.Builder();
     serviceOptionsBuilder.url("/sdk/v2/geocode");
     serviceOptionsBuilder.method(MFMethod.GET);
@@ -34,7 +36,7 @@ class SRequest {
     return serviceOptionsBuilder.build();
   }
 
-  static MFServiceOptions buildPlaceDetailRequestWithId(MethodCall call) {
+  static MFServiceOptions buildPlaceDetailRequestWithId(@NonNull MethodCall call) {
     MFServiceOptions.Builder serviceOptionsBuilder = new MFServiceOptions.Builder();
     StringBuilder urlBuilder = new StringBuilder("/sdk/place/detail");
     serviceOptionsBuilder.method(MFMethod.GET);
@@ -46,7 +48,7 @@ class SRequest {
     return serviceOptionsBuilder.build();
   }
 
-  static MFServiceOptions buildTextSearchRequestWithData(MethodCall call) {
+  static MFServiceOptions buildTextSearchRequestWithData(@NonNull MethodCall call) {
     MFServiceOptions.Builder serviceOptionsBuilder = new MFServiceOptions.Builder();
     serviceOptionsBuilder.url("/sdk/place/text-search");
     serviceOptionsBuilder.method(MFMethod.GET);
@@ -75,7 +77,7 @@ class SRequest {
     return serviceOptionsBuilder.build();
   }
 
-  static MFServiceOptions buildNearbySearchRequestWithData(MethodCall call) {
+  static MFServiceOptions buildNearbySearchRequestWithData(@NonNull MethodCall call) {
     MFServiceOptions.Builder serviceOptionsBuilder = new MFServiceOptions.Builder();
     serviceOptionsBuilder.url("/sdk/place/nearby-search");
     serviceOptionsBuilder.method(MFMethod.GET);
@@ -114,7 +116,7 @@ class SRequest {
     return serviceOptionsBuilder.build();
   }
 
-  static MFServiceOptions buildViewboxSearchRequestWithData(MethodCall call) {
+  static MFServiceOptions buildViewboxSearchRequestWithData(@NonNull MethodCall call) {
     MFServiceOptions.Builder serviceOptionsBuilder = new MFServiceOptions.Builder();
     serviceOptionsBuilder.url("/sdk/place/viewbox-search");
     serviceOptionsBuilder.method(MFMethod.GET);
@@ -148,7 +150,7 @@ class SRequest {
     return serviceOptionsBuilder.build();
   }
 
-  static MFServiceOptions buildSuggestionsRequestWithData(MethodCall call) {
+  static MFServiceOptions buildSuggestionsRequestWithData(@NonNull MethodCall call) {
     MFServiceOptions.Builder serviceOptionsBuilder = new MFServiceOptions.Builder();
     serviceOptionsBuilder.url("/sdk/autosuggest");
     serviceOptionsBuilder.method(MFMethod.GET);
@@ -172,7 +174,7 @@ class SRequest {
     return serviceOptionsBuilder.build();
   }
 
-  static MFServiceOptions buildDirectionsRequestWithData(MethodCall call) {
+  static MFServiceOptions buildDirectionsRequestWithData(@NonNull MethodCall call) {
     MFServiceOptions.Builder serviceOptionsBuilder = new MFServiceOptions.Builder();
     serviceOptionsBuilder.url("/sdk/route");
     serviceOptionsBuilder.method(MFMethod.GET);
@@ -224,7 +226,7 @@ class SRequest {
     return serviceOptionsBuilder.build();
   }
 
-  static MFServiceOptions buildRouteETARequestWithData(MethodCall call) {
+  static MFServiceOptions buildRouteETARequestWithData(@NonNull MethodCall call) {
     MFServiceOptions.Builder serviceOptionsBuilder = new MFServiceOptions.Builder();
     serviceOptionsBuilder.url("/sdk/route/eta");
     serviceOptionsBuilder.method(MFMethod.POST);
@@ -274,7 +276,7 @@ class SRequest {
     return serviceOptionsBuilder.build();
   }
 
-  static MFServiceOptions buildDistanceMatrixRequestWithData(MethodCall call) {
+  static MFServiceOptions buildDistanceMatrixRequestWithData(@NonNull MethodCall call) {
     MFServiceOptions.Builder serviceOptionsBuilder = new MFServiceOptions.Builder();
     serviceOptionsBuilder.url("/sdk/route/matrix");
     serviceOptionsBuilder.method(MFMethod.GET);
@@ -321,7 +323,7 @@ class SRequest {
     return serviceOptionsBuilder.build();
   }
 
-  static MFServiceOptions buildGraphRouteRequestWithData(MethodCall call) {
+  static MFServiceOptions buildGraphRouteRequestWithData(@NonNull MethodCall call) {
     MFServiceOptions.Builder serviceOptionsBuilder = new MFServiceOptions.Builder();
     serviceOptionsBuilder.url("/sdk/route/graph");
     serviceOptionsBuilder.method(MFMethod.GET);

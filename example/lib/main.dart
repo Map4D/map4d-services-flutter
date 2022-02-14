@@ -89,23 +89,79 @@ class _MyAppState extends State<MyApp> {
       const MFLocationComponent(latitude: 16.081126855919138, longitude: 108.21412717916483)
     ];
     MFRouteRestriction avoid = MFRouteRestriction.restrictCircleArea(
-        const MFLocationComponent(latitude: 16.080611, longitude: 108.218113),
-        30,
-        types: routeTypes);
+      const MFLocationComponent(latitude: 16.080611, longitude: 108.218113),
+      30,
+      types: routeTypes);
     final directions = await MFServices.routes.getDirections(
-        const MFLocationComponent(latitude: 16.08116088350121, longitude: 108.21979357460582),
-        const MFLocationComponent(latitude: 16.08334260545329, longitude: 108.21651589082553),
-        waypoints: waypoints,
-        avoid: avoid
+      const MFLocationComponent(latitude: 16.08116088350121, longitude: 108.21979357460582),
+      const MFLocationComponent(latitude: 16.08334260545329, longitude: 108.21651589082553),
+      waypoints: waypoints,
+      avoid: avoid
     );
     print('Directions: $directions');
   }
 
-  void _routeETA() async {}
+  void _routeETA() async {
+    List<MFRouteType> routeTypes = <MFRouteType>[MFRouteType.motorway, MFRouteType.tunnel];
+    List<MFLocationComponent> origins = <MFLocationComponent>[
+      const MFLocationComponent(latitude: 16.039173, longitude: 108.210912, alias: "alias1"),
+      const MFLocationComponent(latitude: 16.039402, longitude: 108.211080, alias: 'alias2')
+    ];
 
-  void _routeMatrix() async {}
+    MFRouteRestriction avoid = MFRouteRestriction.restrictCircleArea(
+      const MFLocationComponent(latitude: 16.044597, longitude: 108.217263),
+      30,
+      types: routeTypes);
 
-  void _routeGraph() async {}
+    final etas = await MFServices.routes.getRouteETA(
+      origins,
+      const MFLocationComponent(latitude: 16.0825981, longitude: 108.2219887),
+      avoid: avoid
+    );
+    print('ETAs: $etas');
+  }
+
+  void _routeMatrix() async {
+    List<MFRouteType> routeTypes = <MFRouteType>[MFRouteType.motorway, MFRouteType.tunnel];
+    List<MFLocationComponent> origins = <MFLocationComponent>[
+      const MFLocationComponent(latitude: 16.024634, longitude: 108.209217),
+      const MFLocationComponent(latitude: 16.0717664, longitude: 108.2236151)
+    ];
+
+    List<MFLocationComponent> destinations = <MFLocationComponent>[
+      const MFLocationComponent(latitude: 16.0717664, longitude: 108.2236151),
+      const MFLocationComponent(latitude: 16.06104, longitude: 108.2167)
+    ];
+
+    MFRouteRestriction avoid = MFRouteRestriction.restrictCircleArea(
+      const MFLocationComponent(latitude: 16.080611, longitude: 108.218113),
+      30,
+      types: routeTypes);
+
+    final matrix = await MFServices.routes.getDistanceMatrix(
+      origins,
+      destinations,
+      avoid: avoid
+    );
+    print('Matrix: $matrix');
+  }
+
+  void _routeGraph() async {
+    List<MFRouteType> routeTypes = <MFRouteType>[MFRouteType.motorway, MFRouteType.tunnel];
+    List<MFLocationComponent> points = <MFLocationComponent>[
+      const MFLocationComponent(latitude: 16.08116088350121, longitude: 108.21979357460582),
+      const MFLocationComponent(latitude: 16.08334260545329, longitude: 108.21651589082553)
+    ];
+    MFRouteRestriction avoid = MFRouteRestriction.restrictCircleArea(
+      const MFLocationComponent(latitude: 16.080611, longitude: 108.218113),
+      30,
+      types: routeTypes);
+    final graph = await MFServices.routes.getRouteGraph(
+      points,
+      avoid: avoid
+    );
+    print('Graph: $graph');
+  }
 
   @override
   Widget build(BuildContext context) {
