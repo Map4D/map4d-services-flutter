@@ -1,8 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="vn.map4d.services.map4d_services_example">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
    <application
         android:label="map4d_services_example"
         android:icon="@mipmap/ic_launcher">
+
+       <meta-data
+           android:name="vn.map4d.services.ACCESS_KEY"
+           android:value="5d94befb6bd062833e986cd518f56367" />
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
