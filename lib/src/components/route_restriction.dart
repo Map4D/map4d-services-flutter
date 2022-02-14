@@ -53,7 +53,11 @@ class MFRouteRestriction {
     }
 
     if (_types != null) {
-      json['types'] = _types!.map((e) => e.index);
+      final types = <int>[];
+      for (final type in _types!) {
+        types.add(type.index);
+      }
+      json['types'] = types;
     }
 
     return json;
