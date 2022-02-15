@@ -1,5 +1,5 @@
-import '../components.dart';
-
+///
+///
 class MFLocationComponent {
 
   final double latitude;
@@ -25,8 +25,16 @@ class MFLocationComponent {
   }
 
   static MFLocationComponent? fromJson(Object? json) {
-    if (json != null && json is Map<dynamic, dynamic>) {
-      return MFLocationComponent(latitude: json['lat'], longitude: json['lng']);
+    if (json != null) {
+      if (json is Map<dynamic, dynamic>) {
+        return MFLocationComponent(latitude: json['lat'].toDouble(), longitude: json['lng'].toDouble());
+      }
+      else if (json is String) {
+        final coor = json.split(',');
+        if (coor.length == 2) {
+          return MFLocationComponent(latitude: double.parse(coor[0]), longitude: double.parse(coor[1]));
+        }
+      }
     }
     return null;
   }

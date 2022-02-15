@@ -20,7 +20,7 @@ class RouteDescriptionResult implements MFRouteDescriptionResult {
       return null;
     }
 
-    return RouteDescriptionResult._(json['text'], json['value']);
+    return RouteDescriptionResult._(json['text'], json['value'].toDouble());
   }
 
   @override
