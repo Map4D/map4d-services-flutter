@@ -1,20 +1,9 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:map4d_services/map4d_services.dart';
 
 void main() {
   runApp(const MyApp());
 }
-
-final List<ListTile> _list = <ListTile>[
-  const ListTile(title: Text('Place Detail'),),
-  const ListTile(title: Text('Auto Suggest'),),
-  const ListTile(title: Text('Text Search'),),
-  const ListTile(title: Text('Nearby Search'),),
-  const ListTile(title: Text('Viewbox Search'),),
-];
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
