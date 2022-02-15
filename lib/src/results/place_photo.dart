@@ -3,18 +3,18 @@ abstract class MFPlacePhotoResult {
   String get name;
 }
 
-class MFPlacePhotoResultImpl implements MFPlacePhotoResult {
+class PlacePhotoResult implements MFPlacePhotoResult {
   final String _url;
   final String _name;
 
-  MFPlacePhotoResultImpl._(this._name, this._url);
+  PlacePhotoResult._(this._name, this._url);
 
   static MFPlacePhotoResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {
       return null;
     }
 
-    return MFPlacePhotoResultImpl._(json['name'], json['url']);
+    return PlacePhotoResult._(json['name'], json['url']);
   }
 
   @override

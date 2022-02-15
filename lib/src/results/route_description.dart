@@ -9,18 +9,18 @@ abstract class MFRouteDescriptionResult {
 ///
 ///
 ///
-class MFRouteDescriptionResultImpl implements MFRouteDescriptionResult {
+class RouteDescriptionResult implements MFRouteDescriptionResult {
   final String _text;
   final double _value;
 
-  MFRouteDescriptionResultImpl._(this._text, this._value);
+  RouteDescriptionResult._(this._text, this._value);
 
-  static MFRouteDescriptionResultImpl? fromMap(Object? json) {
+  static RouteDescriptionResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {
       return null;
     }
 
-    return MFRouteDescriptionResultImpl._(json['text'], json['value']);
+    return RouteDescriptionResult._(json['text'], json['value']);
   }
 
   @override

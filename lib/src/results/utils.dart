@@ -29,7 +29,7 @@ List<MFPlaceAddressComponentResult>? toListPlaceAddressComponent(Object? json) {
   final addressComponents = <MFPlaceAddressComponentResult>[];
 
   for (final jsonComponent in json) {
-    final addressComponent = MFPlaceAddressComponentResultImp.fromMap(jsonComponent);
+    final addressComponent = PlaceAddressComponentResult.fromMap(jsonComponent);
     if (addressComponent != null) {
       addressComponents.add(addressComponent);
     }
@@ -48,7 +48,7 @@ List<MFRouteStepResult>? toListRouteStep(Object? json) {
 
   final steps = <MFRouteStepResult>[];
   for (final jsonStep in json) {
-    final step = MFRouteStepResultImpl.fromMap(jsonStep);
+    final step = RouteStepResult.fromMap(jsonStep);
     if (step != null) {
       steps.add(step);
     }
@@ -67,7 +67,7 @@ List<MFRouteLegResult>? toListRouteLeg(Object? json, { bool nullable = true }) {
 
   final legs = <MFRouteLegResult>[];
   for (final jsonLeg in json) {
-    final leg = MFRouteLegResultImpl.fromMap(jsonLeg);
+    final leg = RouteLegResult.fromMap(jsonLeg);
     if (leg != null) {
       legs.add(leg);
     }
@@ -85,7 +85,7 @@ List<MFDistanceMatrixElementResult>? toListDistanceMatrixElement(Object? json, {
 
   final elements = <MFDistanceMatrixElementResult>[];
   for (final jsonElement in json) {
-    final element = MFDistanceMatrixElementResultImpl.fromMap(jsonElement);
+    final element = DistanceMatrixElementResult.fromMap(jsonElement);
     if (element != null) {
       elements.add(element);
     }
@@ -103,7 +103,7 @@ List<MFDistanceMatrixRowResult>? toListDistanceMatrixRow(Object? json, { bool nu
 
   final rows = <MFDistanceMatrixRowResult>[];
   for (final jsonRow in json) {
-    final row = MFDistanceMatrixRowResultImpl.fromMap(jsonRow);
+    final row = DistanceMatrixRowResult.fromMap(jsonRow);
     if (row != null) {
       rows.add(row);
     }
@@ -122,7 +122,7 @@ List<MFRouteResult>? toListRoute(Object? json, { bool nullable = true }) {
 
   final routes = <MFRouteResult>[];
   for (final jsonRoute in json) {
-    final route = MFRouteResultImpl.fromMap(jsonRoute);
+    final route = RouteResult.fromMap(jsonRoute);
     if (route != null) {
       routes.add(route);
     }

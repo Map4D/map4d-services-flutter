@@ -9,7 +9,7 @@ abstract class MFGeocodeResult {
   List<MFPlaceAddressComponentResult>? get addressComponents;
 }
 
-class MFGeocodeResultImpl implements MFGeocodeResult {
+class GeocodeResult implements MFGeocodeResult {
   final String? _id;
   final MFLocationComponent _location;
   final String _name;
@@ -17,14 +17,14 @@ class MFGeocodeResultImpl implements MFGeocodeResult {
   final List<String> _types;
   final List<MFPlaceAddressComponentResult>? _addressComponents;
 
-  MFGeocodeResultImpl._(this._id, this._location, this._name, this._address, this._types, this._addressComponents);
+  GeocodeResult._(this._id, this._location, this._name, this._address, this._types, this._addressComponents);
 
-  static MFGeocodeResultImpl? fromMap(Object? json) {
+  static GeocodeResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {
       return null;
     }
 
-    return MFGeocodeResultImpl._(
+    return GeocodeResult._(
       json['id'],
       MFLocationComponent.fromJson(json['location'])!,
       json['name'],

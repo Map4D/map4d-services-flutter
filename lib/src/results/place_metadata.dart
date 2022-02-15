@@ -6,21 +6,21 @@ abstract class MFPlaceMetadataResult {
   int get order;
 }
 
-class MFPlaceMetadataResultImpl implements MFPlaceMetadataResult {
+class PlaceMetadataResult implements MFPlaceMetadataResult {
   final String _id;
   final String _name;
   final String _type;
   final String _content;
   final int _order;
 
-  MFPlaceMetadataResultImpl._(this._id, this._name, this._type, this._content, this._order);
+  PlaceMetadataResult._(this._id, this._name, this._type, this._content, this._order);
 
   static MFPlaceMetadataResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {
       return null;
     }
 
-    return MFPlaceMetadataResultImpl._(json['id'], json['name'], json['type'], json['content'], json['order']);
+    return PlaceMetadataResult._(json['id'], json['name'], json['type'], json['content'], json['order']);
   }
 
   @override

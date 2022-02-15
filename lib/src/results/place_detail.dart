@@ -15,7 +15,7 @@ abstract class MFPlaceDetailResult {
   String? get objectId;
 }
 
-class MFPlaceDetailResultImpl implements MFPlaceDetailResult {
+class PlaceDetailResult implements MFPlaceDetailResult {
   final String _id;
   final String _name;
   final String _address;
@@ -30,7 +30,7 @@ class MFPlaceDetailResultImpl implements MFPlaceDetailResult {
   final List<MFPlaceAddressComponentResult>? _addressComponents;
   final String? _objectId;
 
-  MFPlaceDetailResultImpl._(
+  PlaceDetailResult._(
     this._id,
     this._name,
     this._address,
@@ -44,7 +44,7 @@ class MFPlaceDetailResultImpl implements MFPlaceDetailResult {
     this._objectId,
   );
 
-  static MFPlaceDetailResultImpl? fromMap(Object? json) {
+  static PlaceDetailResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {
       return null;
     }
@@ -52,7 +52,7 @@ class MFPlaceDetailResultImpl implements MFPlaceDetailResult {
     final metadatas = <MFPlaceMetadataResult>[];
     final metadatasJson = json['metadata'] as List<dynamic>;
     for (final metadataJson in metadatasJson) {
-      final metadata = MFPlaceMetadataResultImpl.fromMap(metadataJson);
+      final metadata = PlaceMetadataResult.fromMap(metadataJson);
       if (metadata != null) {
         metadatas.add(metadata);
       }
@@ -61,13 +61,13 @@ class MFPlaceDetailResultImpl implements MFPlaceDetailResult {
     final photos = <MFPlacePhotoResult>[];
     final photosJson = json['photos'] as List<dynamic>;
     for (final photoJson in photosJson) {
-      final photo = MFPlacePhotoResultImpl.fromMap(photoJson);
+      final photo = PlacePhotoResult.fromMap(photoJson);
       if (photo != null) {
         photos.add(photo);
       }
     }
 
-    return MFPlaceDetailResultImpl._(
+    return PlaceDetailResult._(
       json['id'],
       json['name'],
       json['address'],

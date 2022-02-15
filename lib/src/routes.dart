@@ -2,7 +2,8 @@ part of 'services.dart';
 
 class MFRoutesService {
 
-  Future<Map<String, dynamic>> getDirections(
+  ///
+  Future<MFDirectionsResult> getDirections(
     MFLocationComponent origin,
     MFLocationComponent destination, {
       List<MFLocationComponent>? waypoints,
@@ -26,10 +27,14 @@ class MFRoutesService {
       data['avoid'] = avoid.toJson();
     }
 
-    return (await _ServicesChannel.invokeService('route#route', data))!;
+    final response = await _ServicesChannel.invokeService('route#route', data);
+    validateResponse(response);
+
+    return DirectionsResult.fromMap(response!['result'])!;
   }
 
-  Future<Map<String, dynamic>> getRouteETA(
+  ///
+  Future<List<MFRouteETAResult>> getRouteETA(
     List<MFLocationComponent> origins,
     MFLocationComponent destination, {
       MFTravelMode mode = MFTravelMode.car,
@@ -49,10 +54,14 @@ class MFRoutesService {
       data['avoid'] = avoid.toJson();
     }
 
-    return (await _ServicesChannel.invokeService('route#eta', data))!;
+    final response = await _ServicesChannel.invokeService('route#eta', data);
+    validateResponse(response);
+
+    return toListRouteETA(response!['result']);
   }
 
-  Future<Map<String, dynamic>> getDistanceMatrix(
+  ///
+  Future<MFDistanceMatrixResult> getDistanceMatrix(
     List<MFLocationComponent> origins,
     List<MFLocationComponent> destinations, {
       MFTravelMode mode = MFTravelMode.car,
@@ -73,10 +82,14 @@ class MFRoutesService {
       data['avoid'] = avoid.toJson();
     }
 
-    return (await _ServicesChannel.invokeService('route#matrix', data))!;
+    final response = await _ServicesChannel.invokeService('route#matrix', data);
+    validateResponse(response);
+
+    return DistanceMatrixResult.fromMap(response!['result'])!;
   }
 
-  Future<Map<String, dynamic>> getRouteGraph(
+  ///
+  Future<List<MFGraphRouteResult>> getRouteGraph(
     List<MFLocationComponent> points, {
       MFTravelMode mode = MFTravelMode.car,
       MFRouteWeighting weighting = MFRouteWeighting.fastest,
@@ -95,6 +108,9 @@ class MFRoutesService {
       data['avoid'] = avoid.toJson();
     }
 
-    return (await _ServicesChannel.invokeService('route#graph', data))!;
+    final response = await _ServicesChannel.invokeService('route#graph', data);
+    validateResponse(response);
+
+    return toListGraphRoute(response!['result']);
   }
 }
