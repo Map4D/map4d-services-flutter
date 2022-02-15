@@ -8,21 +8,21 @@ abstract class MFSuggestionResult {
   List<String> get types;
 }
 
-class MFSuggestionResultImpl implements MFSuggestionResult {
+class SuggestionResult implements MFSuggestionResult {
   final String? _id;
   final String _name;
   final String _address;
   final MFLocationComponent _location;
   final List<String> _types;
 
-  MFSuggestionResultImpl._(this._id, this._name, this._address, this._location, this._types);
+  SuggestionResult._(this._id, this._name, this._address, this._location, this._types);
 
-  static MFSuggestionResultImpl? fromMap(Object? json) {
+  static SuggestionResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {
       return null;
     }
     
-    return MFSuggestionResultImpl._(
+    return SuggestionResult._(
       json['id'],
       json['name'],
       json['address'],

@@ -17,7 +17,7 @@ abstract class MFRouteResult {
 ///
 ///
 ///
-class MFRouteResultImpl implements MFRouteResult {
+class RouteResult implements MFRouteResult {
   final List<MFRouteLegResult> _legs;
   final String _encodedPolyline;
   final String _summary;
@@ -25,19 +25,19 @@ class MFRouteResultImpl implements MFRouteResult {
   final MFRouteDescriptionResult _duration;
   final List<MFLocationComponent> _snappedLocations;
 
-  MFRouteResultImpl._(this._legs, this._encodedPolyline, this._summary, this._distance, this._duration, this._snappedLocations);
+  RouteResult._(this._legs, this._encodedPolyline, this._summary, this._distance, this._duration, this._snappedLocations);
 
-  static MFRouteResultImpl? fromMap(Object? json) {
+  static RouteResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {
       return null;
     }
 
-    return MFRouteResultImpl._(
+    return RouteResult._(
       toListRouteLeg(json['legs'], nullable: false)!,
       json['overviewPolyline'],
       json['summary'],
-      MFRouteDescriptionResultImpl.fromMap(json['distance'])!,
-      MFRouteDescriptionResultImpl.fromMap(json['duration'])!,
+      RouteDescriptionResult.fromMap(json['distance'])!,
+      RouteDescriptionResult.fromMap(json['duration'])!,
       toListLocationComponent(json['snappedWaypoints'], nullable: false)!,
     );
   }

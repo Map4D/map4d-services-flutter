@@ -37,7 +37,7 @@ abstract class MFRouteStepResult {
 ///
 ///
 ///
-class MFRouteStepResultImpl implements MFRouteStepResult {
+class RouteStepResult implements MFRouteStepResult {
   final MFRouteDescriptionResult _distance;
   final MFRouteDescriptionResult _duration;
 
@@ -50,7 +50,7 @@ class MFRouteStepResultImpl implements MFRouteStepResult {
   final String _streetName;
   final MFTravelMode _mode; /* travelMode */
 
-  MFRouteStepResultImpl._(
+  RouteStepResult._(
     this._distance,
     this._duration,
     this._startLocation,
@@ -62,14 +62,14 @@ class MFRouteStepResultImpl implements MFRouteStepResult {
     this._mode,
   );
 
-  static MFRouteStepResultImpl? fromMap(Object? json) {
+  static RouteStepResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {
       return null;
     }
 
-    return MFRouteStepResultImpl._(
-      MFRouteDescriptionResultImpl.fromMap(json['distance'])!,
-      MFRouteDescriptionResultImpl.fromMap(json['duration'])!,
+    return RouteStepResult._(
+      RouteDescriptionResult.fromMap(json['distance'])!,
+      RouteDescriptionResult.fromMap(json['duration'])!,
       MFLocationComponent.fromJson(json['startLocation'])!,
       MFLocationComponent.fromJson(json['endLocation'])!,
       json['htmlInstructions'],

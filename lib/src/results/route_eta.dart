@@ -13,15 +13,15 @@ abstract class MFRouteETAResult {
 
 ///
 ///
-class MFRouteETAResultImpl implements MFRouteETAResult {
+class RouteETAResult implements MFRouteETAResult {
   final MFLocationComponent _location;
   final MFRouteDescriptionResult _distance;
   final MFRouteDescriptionResult _duration;
   final String _encodedPolyline;
 
-  MFRouteETAResultImpl._(this._location, this._distance, this._duration, this._encodedPolyline);
+  RouteETAResult._(this._location, this._distance, this._duration, this._encodedPolyline);
 
-  static MFRouteETAResultImpl? fromMap(Object? json) {
+  static RouteETAResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {
       return null;
     }
@@ -29,10 +29,10 @@ class MFRouteETAResultImpl implements MFRouteETAResult {
     String? alias = json['alias'];
     final location = MFLocationComponent.fromJson(json['location'])!;
 
-    return MFRouteETAResultImpl._(
+    return RouteETAResult._(
       alias == null ? location : MFLocationComponent(latitude: location.latitude, longitude: location.longitude, alias: alias),
-      MFRouteDescriptionResultImpl.fromMap(json['distance'])!,
-      MFRouteDescriptionResultImpl.fromMap(json['duration'])!,
+      RouteDescriptionResult.fromMap(json['distance'])!,
+      RouteDescriptionResult.fromMap(json['duration'])!,
       json['polyline'],
     );
   }

@@ -13,23 +13,23 @@ abstract class MFGraphRouteResult {
 
 ///
 ///
-class MFGraphRouteResultImpl implements MFGraphRouteResult {
+class GraphRouteResult implements MFGraphRouteResult {
   final String _id;
   final MFRouteDescriptionResult _distance;
   final MFRouteDescriptionResult _duration;
   final String _encodedPolyline;
 
-  MFGraphRouteResultImpl._(this._id, this._distance, this._duration, this._encodedPolyline);
+  GraphRouteResult._(this._id, this._distance, this._duration, this._encodedPolyline);
 
-  static MFGraphRouteResultImpl? fromMap(Object? json) {
+  static GraphRouteResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {
       return null;
     }
 
-    return MFGraphRouteResultImpl._(
+    return GraphRouteResult._(
       json['id'],
-      MFRouteDescriptionResultImpl.fromMap(json['distance'])!,
-      MFRouteDescriptionResultImpl.fromMap(json['duration'])!,
+      RouteDescriptionResult.fromMap(json['distance'])!,
+      RouteDescriptionResult.fromMap(json['duration'])!,
       json['polyline'],
     );
   }

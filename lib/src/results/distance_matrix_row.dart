@@ -8,17 +8,17 @@ abstract class MFDistanceMatrixRowResult {
 
 ///
 ///
-class MFDistanceMatrixRowResultImpl implements MFDistanceMatrixRowResult {
+class DistanceMatrixRowResult implements MFDistanceMatrixRowResult {
   final List<MFDistanceMatrixElementResult>? _elements;
 
-  MFDistanceMatrixRowResultImpl._(this._elements);
+  DistanceMatrixRowResult._(this._elements);
 
-  static MFDistanceMatrixRowResultImpl? fromMap(Object? json) {
+  static DistanceMatrixRowResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {
       return null;
     }
 
-    return MFDistanceMatrixRowResultImpl._(toListDistanceMatrixElement(json['elements']));
+    return DistanceMatrixRowResult._(toListDistanceMatrixElement(json['elements']));
   }
 
   @override

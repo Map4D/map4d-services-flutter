@@ -8,17 +8,17 @@ abstract class MFDirectionsResult {
 
 ///
 ///
-class MFDirectionsResultImpl implements MFDirectionsResult {
+class DirectionsResult implements MFDirectionsResult {
   final List<MFRouteResult>? _routes;
 
-  MFDirectionsResultImpl._(this._routes);
+  DirectionsResult._(this._routes);
 
   static MFDirectionsResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {
       return null;
     }
 
-    return MFDirectionsResultImpl._(toListRoute(json['routes']));
+    return DirectionsResult._(toListRoute(json['routes']));
   }
 
   @override

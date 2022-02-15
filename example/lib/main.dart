@@ -1,20 +1,9 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:map4d_services/map4d_services.dart';
 
 void main() {
   runApp(const MyApp());
 }
-
-final List<ListTile> _list = <ListTile>[
-  const ListTile(title: Text('Place Detail'),),
-  const ListTile(title: Text('Auto Suggest'),),
-  const ListTile(title: Text('Text Search'),),
-  const ListTile(title: Text('Nearby Search'),),
-  const ListTile(title: Text('Viewbox Search'),),
-];
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -26,17 +15,26 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   void _placeDetail() async {
-    final detail = await MFServices.places.getPlaceDetail('5c88df71d2c05acd14848f9e');
-    //detail['result']['name'];
-    print('Place Detail: $detail');
+    MFServices.places.getPlaceDetail('5c88df71d2c05acd14848f9e')
+    .then((detail) => {
+      print('Place Detail: $detail')
+    })
+    .onError<MFServiceError>((error, stackTrace) => {
+      print('Place Detail Error: ${error.code}, ${error.message}')
+    });
   }
 
   void _autoSuggest() async {
-    final places = await MFServices.places.getPlacesSuggestion('Tam Giang',
-      location: const MFLocationComponent(latitude: 16.575619, longitude: 107.530756),
-      acronym: false,
-    );
-    print('Auto Suggest: $places');
+    try {
+      final places = await MFServices.places.getPlacesSuggestion(
+        'Tam Giang',
+        location: const MFLocationComponent(latitude: 16.575619, longitude: 107.530756),
+        acronym: false,
+      );
+      print('Auto Suggest: $places');
+    } on MFServiceError catch (error) {
+      print('Auto Suggest Error: ${error.code}, ${error.message}');
+    }
   }
 
   void _textSearch() async {
@@ -50,37 +48,49 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _nearbySearch() async {
-    final places = await MFServices.places.getPlacesByNearbySearch(
-      const MFLocationComponent(latitude: 16.075177, longitude: 108.220228),
-      20000,
-      text: 'Sịa',
-      tags: ['point'],
-      types: ['point'],
-      datetime: DateTime.now(),
-    );
-    print('Nearby Search: $places');
+    try {
+      final places = await MFServices.places.getPlacesByNearbySearch(
+        const MFLocationComponent(latitude: 16.075177, longitude: 108.220228),
+        20000,
+        text: 'Sịa',
+        // tags: ['point'],
+        types: ['point'],
+        datetime: DateTime.now(),
+      );
+      print('Nearby Search: $places');
+    } on MFServiceError catch (error) {
+      print('Nearby Search Error: ${error.code}, ${error.message}');
+    }
   }
 
   void _viewboxSearch() async {
-    final places = await MFServices.places.getPlacesByViewboxSearch(
-      const MFViewboxComponent(southwest: MFLocationComponent(latitude: 16.056453967981348, longitude: 108.19387435913086),
-                               northeast: MFLocationComponent(latitude: 16.093031550262133, longitude: 108.25927734375)),
-      text: 'a',
-      tags: ['Coopmart'],
-      types: ['atm'],
-      datetime: DateTime.now(),
-    );
-    print('Viewbox Search: $places');
+    try {
+      final places = await MFServices.places.getPlacesByViewboxSearch(
+        const MFViewboxComponent(southwest: MFLocationComponent(latitude: 16.056453967981348, longitude: 108.19387435913086),
+                                northeast: MFLocationComponent(latitude: 16.093031550262133, longitude: 108.25927734375)),
+        text: 'a',
+        // tags: ['Coopmart'],
+        types: ['atm'],
+        datetime: DateTime.now(),
+      );
+      print('Viewbox Search: $places');
+    } on MFServiceError catch (error) {
+      print('Viewbox Search Error: ${error.code}, ${error.message}');
+    }
   }
 
   void _geocode() async {
-    final geos = await MFServices.places.getGeocode(
-      location: const MFLocationComponent(latitude: 16.024634, longitude: 108.209217),
-      address: '31 Lê Văn Duyệt',
-      viewbox: const MFViewboxComponent(southwest: MFLocationComponent(latitude: 16.056453967981348, longitude: 108.19387435913086),
-                                        northeast: MFLocationComponent(latitude: 16.093031550262133, longitude: 108.25927734375))
-    );
-    print('Geocode: $geos');
+    try {
+      final geos = await MFServices.places.getGeocode(
+        location: const MFLocationComponent(latitude: 16.024634, longitude: 108.209217),
+        address: '31 Lê Văn Duyệt',
+        viewbox: const MFViewboxComponent(southwest: MFLocationComponent(latitude: 16.056453967981348, longitude: 108.19387435913086),
+                                          northeast: MFLocationComponent(latitude: 16.093031550262133, longitude: 108.25927734375))
+      );
+      print('Geocode: $geos');
+    } on MFServiceError catch (error) {
+      print('Geocode Error: ${error.code}, ${error.message}');
+    }
   }
 
   void _directions() async {
@@ -91,14 +101,19 @@ class _MyAppState extends State<MyApp> {
     MFRouteRestriction avoid = MFRouteRestriction.restrictCircleArea(
       const MFLocationComponent(latitude: 16.080611, longitude: 108.218113),
       30,
-      types: routeTypes);
-    final directions = await MFServices.routes.getDirections(
-      const MFLocationComponent(latitude: 16.08116088350121, longitude: 108.21979357460582),
-      const MFLocationComponent(latitude: 16.08334260545329, longitude: 108.21651589082553),
-      waypoints: waypoints,
-      avoid: avoid
+      types: routeTypes
     );
-    print('Directions: $directions');
+    try {
+      final directions = await MFServices.routes.getDirections(
+        const MFLocationComponent(latitude: 16.08116088350121, longitude: 108.21979357460582),
+        const MFLocationComponent(latitude: 16.08334260545329, longitude: 108.21651589082553),
+        waypoints: waypoints,
+        avoid: avoid
+      );
+      print('Directions: $directions');
+    } on MFServiceError catch (error) {
+      print('Directions Error: ${error.code}, ${error.message}');
+    }
   }
 
   void _routeETA() async {
@@ -113,12 +128,16 @@ class _MyAppState extends State<MyApp> {
       30,
       types: routeTypes);
 
-    final etas = await MFServices.routes.getRouteETA(
-      origins,
-      const MFLocationComponent(latitude: 16.0825981, longitude: 108.2219887),
-      avoid: avoid
-    );
-    print('ETAs: $etas');
+    try {
+      final etas = await MFServices.routes.getRouteETA(
+        origins,
+        const MFLocationComponent(latitude: 16.0825981, longitude: 108.2219887),
+        avoid: avoid
+      );
+      print('ETAs: $etas');
+    } on MFServiceError catch (error) {
+      print('Route ETA Error: ${error.code}, ${error.message}');
+    }
   }
 
   void _routeMatrix() async {
@@ -138,12 +157,13 @@ class _MyAppState extends State<MyApp> {
       30,
       types: routeTypes);
 
-    final matrix = await MFServices.routes.getDistanceMatrix(
+    MFServices.routes.getDistanceMatrix(
       origins,
       destinations,
       avoid: avoid
-    );
-    print('Matrix: $matrix');
+    )
+    .then((matrix) => print('Matrix: $matrix'))
+    .onError<MFServiceError>((error, stackTrace) => print('Matrix Error: ${error.code}, ${error.message}'));
   }
 
   void _routeGraph() async {
@@ -155,12 +175,17 @@ class _MyAppState extends State<MyApp> {
     MFRouteRestriction avoid = MFRouteRestriction.restrictCircleArea(
       const MFLocationComponent(latitude: 16.080611, longitude: 108.218113),
       30,
-      types: routeTypes);
-    final graph = await MFServices.routes.getRouteGraph(
-      points,
-      avoid: avoid
+      types: routeTypes
     );
-    print('Graph: $graph');
+    try {
+      final graph = await MFServices.routes.getRouteGraph(
+        points,
+        avoid: avoid
+      );
+      print('Graph: $graph');
+    } on MFServiceError catch (error) {
+      print('Graph Route Error: ${error.code}, ${error.message}');
+    }  
   }
 
   @override

@@ -19,7 +19,7 @@ abstract class MFRouteLegResult {
 ///
 ///
 ///
-class MFRouteLegResultImpl implements MFRouteLegResult {
+class RouteLegResult implements MFRouteLegResult {
   final List<MFRouteStepResult> _steps;
 
   final MFRouteDescriptionResult _distance;
@@ -31,17 +31,17 @@ class MFRouteLegResultImpl implements MFRouteLegResult {
   final MFLocationComponent _startLocation;
   final MFLocationComponent _endLocation;
 
-  MFRouteLegResultImpl._(this._steps, this._distance, this._duration, this._startAddress, this._endAddress, this._startLocation, this._endLocation);
+  RouteLegResult._(this._steps, this._distance, this._duration, this._startAddress, this._endAddress, this._startLocation, this._endLocation);
 
-  static MFRouteLegResultImpl? fromMap(Object? json) {
+  static RouteLegResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {
       return null;
     }
 
-    return MFRouteLegResultImpl._(
+    return RouteLegResult._(
       toListRouteStep(json['steps'])!,
-      MFRouteDescriptionResultImpl.fromMap(json['distance'])!,
-      MFRouteDescriptionResultImpl.fromMap(json['duration'])!,
+      RouteDescriptionResult.fromMap(json['distance'])!,
+      RouteDescriptionResult.fromMap(json['duration'])!,
       json['startAddress'],
       json['endAddress'],
       MFLocationComponent.fromJson(json['startLocation'])!,

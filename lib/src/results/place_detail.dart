@@ -15,7 +15,7 @@ abstract class MFPlaceDetailResult {
   String? get objectId;
 }
 
-class MFPlaceDetailResultImpl implements MFPlaceDetailResult {
+class PlaceDetailResult implements MFPlaceDetailResult {
   final String _id;
   final String _name;
   final String _address;
@@ -30,7 +30,7 @@ class MFPlaceDetailResultImpl implements MFPlaceDetailResult {
   final List<MFPlaceAddressComponentResult>? _addressComponents;
   final String? _objectId;
 
-  MFPlaceDetailResultImpl._(
+  PlaceDetailResult._(
     this._id,
     this._name,
     this._address,
@@ -44,37 +44,41 @@ class MFPlaceDetailResultImpl implements MFPlaceDetailResult {
     this._objectId,
   );
 
-  static MFPlaceDetailResultImpl? fromMap(Object? json) {
+  static PlaceDetailResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {
       return null;
     }
 
     final metadatas = <MFPlaceMetadataResult>[];
-    final metadatasJson = json['metadata'] as List<dynamic>;
-    for (final metadataJson in metadatasJson) {
-      final metadata = MFPlaceMetadataResultImpl.fromMap(metadataJson);
-      if (metadata != null) {
-        metadatas.add(metadata);
+    final metadatasJson = json['metadata'] as List<dynamic>?;
+    if (metadatasJson != null) {
+      for (final metadataJson in metadatasJson) {
+        final metadata = PlaceMetadataResult.fromMap(metadataJson);
+        if (metadata != null) {
+          metadatas.add(metadata);
+        }
       }
     }
 
     final photos = <MFPlacePhotoResult>[];
-    final photosJson = json['photos'] as List<dynamic>;
-    for (final photoJson in photosJson) {
-      final photo = MFPlacePhotoResultImpl.fromMap(photoJson);
-      if (photo != null) {
-        photos.add(photo);
+    final photosJson = json['photos'] as List<dynamic>?;
+    if (photosJson != null) {
+      for (final photoJson in photosJson) {
+        final photo = PlacePhotoResult.fromMap(photoJson);
+        if (photo != null) {
+          photos.add(photo);
+        }
       }
     }
 
-    return MFPlaceDetailResultImpl._(
+    return PlaceDetailResult._(
       json['id'],
       json['name'],
       json['address'],
       MFLocationComponent.fromJson(json['location'])!,
       (json['types'] as List<dynamic>).cast<String>(),
       json['description'],
-      (json['tags'] as List<dynamic>).cast<String>(),
+      (json['tags'] as List<dynamic>?)?.cast<String>(),
       metadatas.isNotEmpty ? metadatas : null,
       photos.isNotEmpty ? photos : null,
       toListPlaceAddressComponent(json['addressComponents']),

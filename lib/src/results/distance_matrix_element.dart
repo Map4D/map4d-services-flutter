@@ -10,20 +10,20 @@ abstract class MFDistanceMatrixElementResult {
 
 ///
 ///
-class MFDistanceMatrixElementResultImpl implements MFDistanceMatrixElementResult {
+class DistanceMatrixElementResult implements MFDistanceMatrixElementResult {
   final MFRouteDescriptionResult _distance;
   final MFRouteDescriptionResult _duration;
 
-  MFDistanceMatrixElementResultImpl._(this._distance, this._duration);
+  DistanceMatrixElementResult._(this._distance, this._duration);
 
-  static MFDistanceMatrixElementResultImpl? fromMap(Object? json) {
+  static DistanceMatrixElementResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {
       return null;
     }
 
-    return MFDistanceMatrixElementResultImpl._(
-      MFRouteDescriptionResultImpl.fromMap(json['distance'])!,
-      MFRouteDescriptionResultImpl.fromMap(json['duration'])!,
+    return DistanceMatrixElementResult._(
+      RouteDescriptionResult.fromMap(json['distance'])!,
+      RouteDescriptionResult.fromMap(json['duration'])!,
     );
   }
 

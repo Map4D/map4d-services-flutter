@@ -1,5 +1,7 @@
 library map4d_services;
 
+export 'src/service_error.dart';
+
 export 'src/components.dart'
   show
     MFLocationComponent,

@@ -8,21 +8,21 @@ abstract class MFPlaceResult {
   List<String> get types;
 }
 
-class MFPlaceResultImpl implements MFPlaceResult {
+class PlaceResult implements MFPlaceResult {
   final String? _id;
   final String _name;
   final String _address;
   final MFLocationComponent _location;
   final List<String> _types;
 
-  MFPlaceResultImpl._(this._id, this._name, this._address, this._location, this._types);
+  PlaceResult._(this._id, this._name, this._address, this._location, this._types);
 
-  static MFPlaceResultImpl? fromMap(Object? json) {
+  static PlaceResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {
       return null;
     }
     
-    return MFPlaceResultImpl._(
+    return PlaceResult._(
       json['id'],
       json['name'],
       json['address'],
