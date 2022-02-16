@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   void _placeDetail() async {
-    MFServices.places.getPlaceDetail('5c88df71d2c05acd14848f9e')
+    MFServices.places.fetchPlaceDetail('5c88df71d2c05acd14848f9e')
     .then((detail) => {
       print('Place Detail: $detail')
     })
@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
 
   void _autoSuggest() async {
     try {
-      final places = await MFServices.places.getPlacesSuggestion(
+      final places = await MFServices.places.fetchSuggestion(
         'Tam Giang',
         location: const MFLocationComponent(latitude: 16.575619, longitude: 107.530756),
         acronym: false,
@@ -38,7 +38,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _textSearch() async {
-    final places = await MFServices.places.getPlacesByTextSearch('abc',
+    final places = await MFServices.places.fetchTextSearch('abc',
       types: ['atm'],
       datetime: DateTime.now(),
       location: const MFLocationComponent(latitude: 16.075177, longitude: 108.220228)
@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
 
   void _nearbySearch() async {
     try {
-      final places = await MFServices.places.getPlacesByNearbySearch(
+      final places = await MFServices.places.fetchNearbySearch(
         const MFLocationComponent(latitude: 16.075177, longitude: 108.220228),
         20000,
         text: 'Sịa',
@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> {
 
   void _viewboxSearch() async {
     try {
-      final places = await MFServices.places.getPlacesByViewboxSearch(
+      final places = await MFServices.places.fetchViewboxSearch(
         const MFViewboxComponent(southwest: MFLocationComponent(latitude: 16.056453967981348, longitude: 108.19387435913086),
                                 northeast: MFLocationComponent(latitude: 16.093031550262133, longitude: 108.25927734375)),
         text: 'a',
@@ -81,7 +81,7 @@ class _MyAppState extends State<MyApp> {
 
   void _geocode() async {
     try {
-      final geos = await MFServices.places.getGeocode(
+      final geos = await MFServices.places.fetchGeocode(
         location: const MFLocationComponent(latitude: 16.024634, longitude: 108.209217),
         address: '31 Lê Văn Duyệt',
         viewbox: const MFViewboxComponent(southwest: MFLocationComponent(latitude: 16.056453967981348, longitude: 108.19387435913086),
@@ -104,7 +104,7 @@ class _MyAppState extends State<MyApp> {
       types: routeTypes
     );
     try {
-      final directions = await MFServices.routes.getDirections(
+      final directions = await MFServices.routes.fetchDirections(
         const MFLocationComponent(latitude: 16.08116088350121, longitude: 108.21979357460582),
         const MFLocationComponent(latitude: 16.08334260545329, longitude: 108.21651589082553),
         waypoints: waypoints,
@@ -129,7 +129,7 @@ class _MyAppState extends State<MyApp> {
       types: routeTypes);
 
     try {
-      final etas = await MFServices.routes.getRouteETA(
+      final etas = await MFServices.routes.fetchRouteETA(
         origins,
         const MFLocationComponent(latitude: 16.0825981, longitude: 108.2219887),
         avoid: avoid
@@ -157,7 +157,7 @@ class _MyAppState extends State<MyApp> {
       30,
       types: routeTypes);
 
-    MFServices.routes.getDistanceMatrix(
+    MFServices.routes.fetchDistanceMatrix(
       origins,
       destinations,
       avoid: avoid
@@ -178,7 +178,7 @@ class _MyAppState extends State<MyApp> {
       types: routeTypes
     );
     try {
-      final graph = await MFServices.routes.getRouteGraph(
+      final graph = await MFServices.routes.fetchGraphRoute(
         points,
         avoid: avoid
       );

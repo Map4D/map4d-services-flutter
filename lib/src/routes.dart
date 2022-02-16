@@ -3,7 +3,7 @@ part of 'services.dart';
 class MFRoutesService {
 
   ///
-  Future<MFDirectionsResult> getDirections(
+  Future<MFDirectionsResult> fetchDirections(
     MFLocationComponent origin,
     MFLocationComponent destination, {
       List<MFLocationComponent>? waypoints,
@@ -34,7 +34,7 @@ class MFRoutesService {
   }
 
   ///
-  Future<List<MFRouteETAResult>> getRouteETA(
+  Future<List<MFRouteETAResult>> fetchRouteETA(
     List<MFLocationComponent> origins,
     MFLocationComponent destination, {
       MFTravelMode mode = MFTravelMode.car,
@@ -61,7 +61,7 @@ class MFRoutesService {
   }
 
   ///
-  Future<MFDistanceMatrixResult> getDistanceMatrix(
+  Future<MFDistanceMatrixResult> fetchDistanceMatrix(
     List<MFLocationComponent> origins,
     List<MFLocationComponent> destinations, {
       MFTravelMode mode = MFTravelMode.car,
@@ -89,7 +89,7 @@ class MFRoutesService {
   }
 
   ///
-  Future<List<MFGraphRouteResult>> getRouteGraph(
+  Future<List<MFGraphRouteResult>> fetchGraphRoute(
     List<MFLocationComponent> points, {
       MFTravelMode mode = MFTravelMode.car,
       MFRouteWeighting weighting = MFRouteWeighting.fastest,

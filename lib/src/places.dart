@@ -3,7 +3,7 @@ part of 'services.dart';
 class MFPlacesService {
 
   /// Place detail
-  Future<MFPlaceDetailResult> getPlaceDetail(String id) async {
+  Future<MFPlaceDetailResult> fetchPlaceDetail(String id) async {
     final response = await _ServicesChannel.invokeService('place#detail', <String, Object>{
       'id': id
     });
@@ -12,7 +12,7 @@ class MFPlacesService {
   }
 
   /// Text search
-  Future<List<MFPlaceResult>> getPlacesByTextSearch(
+  Future<List<MFPlaceResult>> fetchTextSearch(
     String text, {
     List<String>? types,
     DateTime? datetime,
@@ -39,7 +39,7 @@ class MFPlacesService {
   }
 
   /// Nearby search
-  Future<List<MFPlaceResult>> getPlacesByNearbySearch(
+  Future<List<MFPlaceResult>> fetchNearbySearch(
     MFLocationComponent location,
     int radius, {
       String? text,
@@ -72,7 +72,7 @@ class MFPlacesService {
   }
 
   /// Viewbox search
-  Future<List<MFPlaceResult>> getPlacesByViewboxSearch(
+  Future<List<MFPlaceResult>> fetchViewboxSearch(
     MFViewboxComponent viewbox, {
       String? text,
       List<String>? types,
@@ -103,7 +103,7 @@ class MFPlacesService {
   }
 
   /// Auto suggest
-  Future<List<MFSuggestionResult>> getPlacesSuggestion(
+  Future<List<MFSuggestionResult>> fetchSuggestion(
     String text, {
       MFLocationComponent? location,
       bool acronym = false
@@ -124,7 +124,7 @@ class MFPlacesService {
   }
 
   /// Geocode
-  Future<List<MFGeocodeResult>> getGeocode({
+  Future<List<MFGeocodeResult>> fetchGeocode({
     MFLocationComponent? location,
     String? address,
     MFViewboxComponent? viewbox
