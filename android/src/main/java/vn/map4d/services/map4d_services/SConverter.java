@@ -206,7 +206,6 @@ class SConverter {
         JSONObject originJsonObject = new JSONObject();
         String alias = toLocationAlias(origins.get(i));
         originJsonObject.put("alias", alias);
-        StringBuilder locationStringBuilder = new StringBuilder();
         originJsonObject.put("location", toLocation(origins.get(i)));
         originsJsonArray.put(originJsonObject);
       } catch (JSONException e) {
