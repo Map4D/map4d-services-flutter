@@ -10,7 +10,7 @@ class MFRoutesService {
       MFTravelMode mode = MFTravelMode.car,
       MFRouteWeighting weighting = MFRouteWeighting.fastest,
       MFLanguageResult language = MFLanguageResult.vi,
-      MFRouteRestriction? avoid,
+      MFRouteRestriction? restriction,
   }) async {
     final Map<String, Object> data = <String, Object>{
       'origin': origin.toJson(),
@@ -23,8 +23,8 @@ class MFRoutesService {
     if (waypoints != null) {
       data['points'] = locationsToJson(waypoints);
     }
-    if (avoid != null) {
-      data['avoid'] = avoid.toJson();
+    if (restriction != null) {
+      data['restriction'] = restriction.toJson();
     }
 
     final response = await _ServicesChannel.invokeService('route#route', data);
@@ -40,7 +40,7 @@ class MFRoutesService {
       MFTravelMode mode = MFTravelMode.car,
       MFRouteWeighting weighting = MFRouteWeighting.fastest,
       MFLanguageResult language = MFLanguageResult.vi,
-      MFRouteRestriction? avoid,
+      MFRouteRestriction? restriction,
   }) async {
     final Map<String, Object> data = <String, Object>{
       'origins': locationsToJson(origins),
@@ -50,8 +50,8 @@ class MFRoutesService {
       'language': language.index,
     };
 
-    if (avoid != null) {
-      data['avoid'] = avoid.toJson();
+    if (restriction != null) {
+      data['restriction'] = restriction.toJson();
     }
 
     final response = await _ServicesChannel.invokeService('route#eta', data);
@@ -67,7 +67,7 @@ class MFRoutesService {
       MFTravelMode mode = MFTravelMode.car,
       MFRouteWeighting weighting = MFRouteWeighting.fastest,
       MFLanguageResult language = MFLanguageResult.vi,
-      MFRouteRestriction? avoid,
+      MFRouteRestriction? restriction,
     }
   ) async {
     final Map<String, Object> data = <String, Object>{
@@ -78,8 +78,8 @@ class MFRoutesService {
       'language': language.index,
     };
 
-    if (avoid != null) {
-      data['avoid'] = avoid.toJson();
+    if (restriction != null) {
+      data['restriction'] = restriction.toJson();
     }
 
     final response = await _ServicesChannel.invokeService('route#matrix', data);
@@ -94,7 +94,7 @@ class MFRoutesService {
       MFTravelMode mode = MFTravelMode.car,
       MFRouteWeighting weighting = MFRouteWeighting.fastest,
       MFLanguageResult language = MFLanguageResult.vi,
-      MFRouteRestriction? avoid,
+      MFRouteRestriction? restriction,
     }
   ) async {
     final Map<String, Object> data = <String, Object>{
@@ -104,8 +104,8 @@ class MFRoutesService {
       'language': language.index,
     };
 
-    if (avoid != null) {
-      data['avoid'] = avoid.toJson();
+    if (restriction != null) {
+      data['restriction'] = restriction.toJson();
     }
 
     final response = await _ServicesChannel.invokeService('route#graph', data);

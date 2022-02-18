@@ -88,7 +88,7 @@
   params.mode = [SConverter toTravelMode:data[@"mode"]];
   params.language = [SConverter toLanguageResult:data[@"language"]];
   params.weighting = [SConverter toRouteWeighting:data[@"weighting"]];
-  params.avoid = [SConverter toRouteRestriction:data[@"avoid"]];
+  params.restriction = [SConverter toRouteRestriction:data[@"restriction"]];
   
   request.params = params;
   return request;
@@ -103,7 +103,7 @@
   params.mode = [SConverter toTravelMode:data[@"mode"]];
   params.language = [SConverter toLanguageResult:data[@"language"]];
   params.weighting = [SConverter toRouteWeighting:data[@"weighting"]];
-  params.avoid = [SConverter toRouteRestriction:data[@"avoid"]];
+  params.restriction = [SConverter toRouteRestriction:data[@"restriction"]];
   
   request.params = params;
   request.method = MFRequestMethodPost;
@@ -119,7 +119,7 @@
   params.mode = [SConverter toTravelMode:data[@"mode"]];
   params.language = [SConverter toLanguageResult:data[@"language"]];
   params.weighting = [SConverter toRouteWeighting:data[@"weighting"]];
-  params.avoid = [SConverter toRouteRestriction:data[@"avoid"]];
+  params.restriction = [SConverter toRouteRestriction:data[@"restriction"]];
   
   request.params = params;
   return request;
@@ -133,7 +133,7 @@
   params.mode = [SConverter toTravelMode:data[@"mode"]];
   params.language = [SConverter toLanguageResult:data[@"language"]];
   params.weighting = [SConverter toRouteWeighting:data[@"weighting"]];
-  params.avoid = [SConverter toRouteRestriction:data[@"avoid"]];
+  params.restriction = [SConverter toRouteRestriction:data[@"restriction"]];
   
   request.params = params;
   return request;

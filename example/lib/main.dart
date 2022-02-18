@@ -98,7 +98,7 @@ class _MyAppState extends State<MyApp> {
     List<MFLocationComponent> waypoints = <MFLocationComponent>[
       const MFLocationComponent(latitude: 16.081126855919138, longitude: 108.21412717916483)
     ];
-    MFRouteRestriction avoid = MFRouteRestriction.restrictCircleArea(
+    MFRouteRestriction restriction = MFRouteRestriction.restrictCircleArea(
       const MFLocationComponent(latitude: 16.080611, longitude: 108.218113),
       30,
       types: routeTypes
@@ -108,7 +108,7 @@ class _MyAppState extends State<MyApp> {
         const MFLocationComponent(latitude: 16.08116088350121, longitude: 108.21979357460582),
         const MFLocationComponent(latitude: 16.08334260545329, longitude: 108.21651589082553),
         waypoints: waypoints,
-        avoid: avoid
+        restriction: restriction
       );
       print('Directions: $directions');
     } on MFServiceError catch (error) {
@@ -123,7 +123,7 @@ class _MyAppState extends State<MyApp> {
       const MFLocationComponent(latitude: 16.039402, longitude: 108.211080, alias: 'alias2')
     ];
 
-    MFRouteRestriction avoid = MFRouteRestriction.restrictCircleArea(
+    MFRouteRestriction restriction = MFRouteRestriction.restrictCircleArea(
       const MFLocationComponent(latitude: 16.044597, longitude: 108.217263),
       30,
       types: routeTypes);
@@ -132,7 +132,7 @@ class _MyAppState extends State<MyApp> {
       final etas = await MFServices.routes.fetchRouteETA(
         origins,
         const MFLocationComponent(latitude: 16.0825981, longitude: 108.2219887),
-        avoid: avoid
+        restriction: restriction
       );
       print('ETAs: $etas');
     } on MFServiceError catch (error) {
@@ -152,7 +152,7 @@ class _MyAppState extends State<MyApp> {
       const MFLocationComponent(latitude: 16.06104, longitude: 108.2167)
     ];
 
-    MFRouteRestriction avoid = MFRouteRestriction.restrictCircleArea(
+    MFRouteRestriction restriction = MFRouteRestriction.restrictCircleArea(
       const MFLocationComponent(latitude: 16.080611, longitude: 108.218113),
       30,
       types: routeTypes);
@@ -160,7 +160,7 @@ class _MyAppState extends State<MyApp> {
     MFServices.routes.fetchDistanceMatrix(
       origins,
       destinations,
-      avoid: avoid
+      restriction: restriction
     )
     .then((matrix) => print('Matrix: $matrix'))
     .onError<MFServiceError>((error, stackTrace) => print('Matrix Error: ${error.code}, ${error.message}'));
@@ -172,7 +172,7 @@ class _MyAppState extends State<MyApp> {
       const MFLocationComponent(latitude: 16.08116088350121, longitude: 108.21979357460582),
       const MFLocationComponent(latitude: 16.08334260545329, longitude: 108.21651589082553)
     ];
-    MFRouteRestriction avoid = MFRouteRestriction.restrictCircleArea(
+    MFRouteRestriction restriction = MFRouteRestriction.restrictCircleArea(
       const MFLocationComponent(latitude: 16.080611, longitude: 108.218113),
       30,
       types: routeTypes
@@ -180,7 +180,7 @@ class _MyAppState extends State<MyApp> {
     try {
       final graph = await MFServices.routes.fetchGraphRoute(
         points,
-        avoid: avoid
+        restriction: restriction
       );
       print('Graph: $graph');
     } on MFServiceError catch (error) {
