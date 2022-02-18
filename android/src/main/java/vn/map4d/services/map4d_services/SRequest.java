@@ -211,7 +211,7 @@ class SRequest {
       params.put("points", points);
     }
 
-    Object avoidObject = call.argument("avoid");
+    Object avoidObject = call.argument("restriction");
     String avoid = SConverter.toAvoid(avoidObject);
     if (avoid != null) {
       params.put("avoid", avoid);
@@ -258,7 +258,7 @@ class SRequest {
         jsonObject.put("language", language);
       }
 
-      Object avoidObject = call.argument("avoid");
+      Object avoidObject = call.argument("restriction");
       String avoid = SConverter.toAvoid(avoidObject);
       if (avoid != null) {
         jsonObject.put("avoid", avoid);
@@ -308,7 +308,7 @@ class SRequest {
       params.put("language", language);
     }
 
-    Object avoidObject = call.argument("avoid");
+    Object avoidObject = call.argument("restriction");
     String avoid = SConverter.toAvoid(avoidObject);
     if (avoid != null) {
       params.put("avoid", avoid);
@@ -350,7 +350,7 @@ class SRequest {
       params.put("language", language);
     }
 
-    Object avoidObject = call.argument("avoid");
+    Object avoidObject = call.argument("restriction");
     String avoid = SConverter.toAvoid(avoidObject);
     if (avoid != null) {
       params.put("avoid", avoid);
