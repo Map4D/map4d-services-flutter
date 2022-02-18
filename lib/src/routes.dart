@@ -90,7 +90,7 @@ class MFRoutesService {
 
   ///
   Future<List<MFGraphRouteResult>> fetchGraphRoute(
-    List<MFLocationComponent> points, {
+    List<MFLocationComponent> locations, {
       MFTravelMode mode = MFTravelMode.car,
       MFRouteWeighting weighting = MFRouteWeighting.fastest,
       MFLanguageResult language = MFLanguageResult.vi,
@@ -98,7 +98,7 @@ class MFRoutesService {
     }
   ) async {
     final Map<String, Object> data = <String, Object>{
-      'points': locationsToJson(points),
+      'points': locationsToJson(locations),
       'mode': mode.index,
       'weighting': weighting.index,
       'language': language.index,
