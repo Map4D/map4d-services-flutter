@@ -2,7 +2,8 @@ import '../results.dart';
 
 ///
 ///
-List<MFLocationComponent>? toListLocationComponent(Object? json, { bool nullable = true }) {
+List<MFLocationComponent>? toListLocationComponent(Object? json,
+    {bool nullable = true}) {
   if (json == null || json is! List<dynamic>) {
     return nullable ? null : <MFLocationComponent>[];
   }
@@ -60,7 +61,7 @@ List<MFRouteStepResult>? toListRouteStep(Object? json) {
 ///
 ///
 ///
-List<MFRouteLegResult>? toListRouteLeg(Object? json, { bool nullable = true }) {
+List<MFRouteLegResult>? toListRouteLeg(Object? json, {bool nullable = true}) {
   if (json == null || json is! List<dynamic>) {
     return nullable ? null : <MFRouteLegResult>[];
   }
@@ -78,7 +79,8 @@ List<MFRouteLegResult>? toListRouteLeg(Object? json, { bool nullable = true }) {
 
 ///
 ///
-List<MFDistanceMatrixElementResult>? toListDistanceMatrixElement(Object? json, { bool nullable = true }) {
+List<MFDistanceMatrixElementResult>? toListDistanceMatrixElement(Object? json,
+    {bool nullable = true}) {
   if (json == null || json is! List<dynamic>) {
     return nullable ? null : <MFDistanceMatrixElementResult>[];
   }
@@ -96,7 +98,8 @@ List<MFDistanceMatrixElementResult>? toListDistanceMatrixElement(Object? json, {
 
 ///
 ///
-List<MFDistanceMatrixRowResult>? toListDistanceMatrixRow(Object? json, { bool nullable = true }) {
+List<MFDistanceMatrixRowResult>? toListDistanceMatrixRow(Object? json,
+    {bool nullable = true}) {
   if (json == null || json is! List<dynamic>) {
     return nullable ? null : <MFDistanceMatrixRowResult>[];
   }
@@ -112,10 +115,9 @@ List<MFDistanceMatrixRowResult>? toListDistanceMatrixRow(Object? json, { bool nu
   return rows.isNotEmpty ? rows : (nullable ? null : rows);
 }
 
-
 ///
 ///
-List<MFRouteResult>? toListRoute(Object? json, { bool nullable = true }) {
+List<MFRouteResult>? toListRoute(Object? json, {bool nullable = true}) {
   if (json == null || json is! List<dynamic>) {
     return nullable ? null : <MFRouteResult>[];
   }
@@ -130,7 +132,6 @@ List<MFRouteResult>? toListRoute(Object? json, { bool nullable = true }) {
 
   return routes.isNotEmpty ? routes : (nullable ? null : routes);
 }
-
 
 ///
 ///

@@ -19,7 +19,8 @@ class GraphRouteResult implements MFGraphRouteResult {
   final MFRouteDescriptionResult _duration;
   final String _encodedPolyline;
 
-  GraphRouteResult._(this._id, this._distance, this._duration, this._encodedPolyline);
+  GraphRouteResult._(
+      this._id, this._distance, this._duration, this._encodedPolyline);
 
   static GraphRouteResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {

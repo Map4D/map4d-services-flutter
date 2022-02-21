@@ -1,17 +1,37 @@
 import '../results.dart';
 
 abstract class MFPlaceDetailResult {
+  /// Place ID.
   String get id;
+
+  /// Place name.
   String get name;
+
+  /// Place address.
   String get address;
+
+  /// Place geographical location.
   MFLocationComponent get location;
+
+  /// List of type of the place.
   List<String> get types;
 
+  /// Place description.
   String? get description;
+
+  /// List of tag of the place.
   List<String>? get tags;
+
+  /// List of metadata of the place.
   List<MFPlaceMetadataResult>? get metadatas;
+
+  /// List of photo of the place.
   List<MFPlacePhotoResult>? get photos;
+
+  /// List of administrative units of the place in that location.
   List<MFPlaceAddressComponentResult>? get addressComponents;
+
+  /// The object of that place (e.g. what building it belongs to - the building is the object).
   String? get objectId;
 }
 
@@ -21,7 +41,6 @@ class PlaceDetailResult implements MFPlaceDetailResult {
   final String _address;
   final MFLocationComponent _location;
   final List<String> _types;
-
 
   final String? _description;
   final List<String>? _tags;
@@ -114,7 +133,8 @@ class PlaceDetailResult implements MFPlaceDetailResult {
   List<MFPlacePhotoResult>? get photos => _photos;
 
   @override
-  List<MFPlaceAddressComponentResult>? get addressComponents => _addressComponents;
+  List<MFPlaceAddressComponentResult>? get addressComponents =>
+      _addressComponents;
 
   @override
   String? get objectId => _objectId;

@@ -3,7 +3,6 @@ abstract class MFPlaceAddressComponentResult {
   List<String> get types;
 }
 
-
 class PlaceAddressComponentResult implements MFPlaceAddressComponentResult {
   final String _name;
   final List<String> _types;

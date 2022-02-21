@@ -1,7 +1,6 @@
 import '../components.dart';
 
 class MFRouteRestriction {
-
   final MFLocationComponent? _location;
 
   final int? _radius;
@@ -12,24 +11,35 @@ class MFRouteRestriction {
 
   final List<MFRouteType>? _types;
 
-  MFRouteRestriction._(this._location, this._radius, this._viewbox, this._path, this._types);
+  MFRouteRestriction._(
+      this._location, this._radius, this._viewbox, this._path, this._types);
 
-  static MFRouteRestriction restrictLocation(MFLocationComponent location, {List<MFRouteType>? types}) {
+  /// Initialize a MFRouteRestriction with restrict one point and route types.
+  static MFRouteRestriction restrictLocation(MFLocationComponent location,
+      {List<MFRouteType>? types}) {
     return MFRouteRestriction._(location, null, null, null, types);
   }
 
-  static MFRouteRestriction restrictCircleArea(MFLocationComponent center, int radius, {List<MFRouteType>? types}) {
+  /// Initialize a MFRouteRestriction with restrict circle area and route types.
+  static MFRouteRestriction restrictCircleArea(
+      MFLocationComponent center, int radius,
+      {List<MFRouteType>? types}) {
     return MFRouteRestriction._(center, radius, null, null, types);
   }
 
-  static MFRouteRestriction restrictCoordinateBounds(MFViewboxComponent viewbox, {List<MFRouteType>? types}) {
+  /// Initialize a MFRouteRestriction with restrict rectangle area and route types.
+  static MFRouteRestriction restrictCoordinateBounds(MFViewboxComponent viewbox,
+      {List<MFRouteType>? types}) {
     return MFRouteRestriction._(null, null, viewbox, null, types);
   }
 
-  static MFRouteRestriction restrictPolygonArea(List<MFLocationComponent> path, {List<MFRouteType>? types}) {
+  /// Initialize a MFRouteRestriction with restrict polygon area and route types.
+  static MFRouteRestriction restrictPolygonArea(List<MFLocationComponent> path,
+      {List<MFRouteType>? types}) {
     return MFRouteRestriction._(null, null, null, path, types);
   }
 
+  /// Initialize a MFRouteRestriction with restrict only route types.
   static MFRouteRestriction restrictRouteTypes(List<MFRouteType>? types) {
     return MFRouteRestriction._(null, null, null, null, types);
   }

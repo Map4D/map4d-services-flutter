@@ -31,7 +31,14 @@ class RouteLegResult implements MFRouteLegResult {
   final MFLocationComponent _startLocation;
   final MFLocationComponent _endLocation;
 
-  RouteLegResult._(this._steps, this._distance, this._duration, this._startAddress, this._endAddress, this._startLocation, this._endLocation);
+  RouteLegResult._(
+      this._steps,
+      this._distance,
+      this._duration,
+      this._startAddress,
+      this._endAddress,
+      this._startLocation,
+      this._endLocation);
 
   static RouteLegResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {

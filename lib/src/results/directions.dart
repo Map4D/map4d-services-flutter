@@ -1,8 +1,7 @@
 import '../results.dart';
 
-///
-///
 abstract class MFDirectionsResult {
+  /// List of directions.
   List<MFRouteResult>? get routes;
 }
 

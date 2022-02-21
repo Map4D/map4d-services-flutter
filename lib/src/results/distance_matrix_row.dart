@@ -18,7 +18,8 @@ class DistanceMatrixRowResult implements MFDistanceMatrixRowResult {
       return null;
     }
 
-    return DistanceMatrixRowResult._(toListDistanceMatrixElement(json['elements']));
+    return DistanceMatrixRowResult._(
+        toListDistanceMatrixElement(json['elements']));
   }
 
   @override

@@ -24,7 +24,7 @@ List<MFPlaceResult> toListPlace(Object? result) {
 
   final places = <MFPlaceResult>[];
   for (final e in result) {
-    final place  = PlaceResult.fromMap(e);
+    final place = PlaceResult.fromMap(e);
     if (place != null) {
       places.add(place);
     }
@@ -54,7 +54,7 @@ List<MFSuggestionResult> toListSuggestion(Object? result) {
 ///
 ///
 List<MFGeocodeResult> toListGeocode(Object? result) {
-    if (result == null || result is! List<dynamic>) {
+  if (result == null || result is! List<dynamic>) {
     return [];
   }
 
@@ -72,7 +72,7 @@ List<MFGeocodeResult> toListGeocode(Object? result) {
 ///
 ///
 List<MFRouteETAResult> toListRouteETA(Object? result) {
-    if (result == null || result is! List<dynamic>) {
+  if (result == null || result is! List<dynamic>) {
     return [];
   }
 
@@ -90,7 +90,7 @@ List<MFRouteETAResult> toListRouteETA(Object? result) {
 ///
 ///
 List<MFGraphRouteResult> toListGraphRoute(Object? result) {
-    if (result == null || result is! List<dynamic>) {
+  if (result == null || result is! List<dynamic>) {
     return [];
   }
 

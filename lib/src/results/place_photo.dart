@@ -22,5 +22,4 @@ class PlacePhotoResult implements MFPlacePhotoResult {
 
   @override
   String get url => _url;
-
 }

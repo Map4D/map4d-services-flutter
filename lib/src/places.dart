@@ -1,26 +1,20 @@
 part of 'services.dart';
 
 class MFPlacesService {
-
   /// Place detail
   Future<MFPlaceDetailResult> fetchPlaceDetail(String id) async {
-    final response = await _ServicesChannel.invokeService('place#detail', <String, Object>{
-      'id': id
-    });
+    final response = await _ServicesChannel.invokeService(
+        'place#detail', <String, Object>{'id': id});
     validateResponse(response);
     return PlaceDetailResult.fromMap(response!['result'])!;
   }
 
   /// Text search
-  Future<List<MFPlaceResult>> fetchTextSearch(
-    String text, {
-    List<String>? types,
-    DateTime? datetime,
-    MFLocationComponent? location
-  }) async {
-    final Map<String, Object> data = <String, Object>{
-      'text': text
-    };
+  Future<List<MFPlaceResult>> fetchTextSearch(String text,
+      {List<String>? types,
+      DateTime? datetime,
+      MFLocationComponent? location}) async {
+    final Map<String, Object> data = <String, Object>{'text': text};
 
     if (types != null) {
       data['types'] = types;
@@ -32,7 +26,8 @@ class MFPlacesService {
       data['location'] = location.toJson();
     }
 
-    final response = await _ServicesChannel.invokeService('place#text-search', data);
+    final response =
+        await _ServicesChannel.invokeService('place#text-search', data);
     validateResponse(response);
 
     return toListPlace(response!['result']);
@@ -42,10 +37,10 @@ class MFPlacesService {
   Future<List<MFPlaceResult>> fetchNearbySearch(
     MFLocationComponent location,
     int radius, {
-      String? text,
-      List<String>? types,
-      List<String>? tags,
-      DateTime? datetime,
+    String? text,
+    List<String>? types,
+    List<String>? tags,
+    DateTime? datetime,
   }) async {
     final Map<String, Object> data = <String, Object>{
       'location': location.toJson(),
@@ -65,7 +60,8 @@ class MFPlacesService {
       data['datetime'] = datetime.millisecondsSinceEpoch;
     }
 
-    final response = await _ServicesChannel.invokeService('place#nearby-search', data);
+    final response =
+        await _ServicesChannel.invokeService('place#nearby-search', data);
     validateResponse(response);
 
     return toListPlace(response!['result']);
@@ -74,10 +70,10 @@ class MFPlacesService {
   /// Viewbox search
   Future<List<MFPlaceResult>> fetchViewboxSearch(
     MFViewboxComponent viewbox, {
-      String? text,
-      List<String>? types,
-      List<String>? tags,
-      DateTime? datetime,
+    String? text,
+    List<String>? types,
+    List<String>? tags,
+    DateTime? datetime,
   }) async {
     final Map<String, Object> data = <String, Object>{
       'viewbox': viewbox.toJson(),
@@ -96,18 +92,16 @@ class MFPlacesService {
       data['datetime'] = datetime.millisecondsSinceEpoch;
     }
 
-    final response = await _ServicesChannel.invokeService('place#viewbox-search', data);
+    final response =
+        await _ServicesChannel.invokeService('place#viewbox-search', data);
     validateResponse(response);
 
     return toListPlace(response!['result']);
   }
 
   /// Auto suggest
-  Future<List<MFSuggestionResult>> fetchSuggestion(
-    String text, {
-      MFLocationComponent? location,
-      bool acronym = false
-  }) async {
+  Future<List<MFSuggestionResult>> fetchSuggestion(String text,
+      {MFLocationComponent? location, bool acronym = false}) async {
     final Map<String, Object> data = <String, Object>{
       'text': text,
       'acronym': acronym,
@@ -117,18 +111,18 @@ class MFPlacesService {
       data['location'] = location.toJson();
     }
 
-    final response = await _ServicesChannel.invokeService('place#autosuggest', data);
+    final response =
+        await _ServicesChannel.invokeService('place#autosuggest', data);
     validateResponse(response);
 
     return toListSuggestion(response!['result']);
   }
 
   /// Geocode
-  Future<List<MFGeocodeResult>> fetchGeocode({
-    MFLocationComponent? location,
-    String? address,
-    MFViewboxComponent? viewbox
-  }) async {
+  Future<List<MFGeocodeResult>> fetchGeocode(
+      {MFLocationComponent? location,
+      String? address,
+      MFViewboxComponent? viewbox}) async {
     final Map<String, Object> data = <String, Object>{};
 
     if (location != null) {
@@ -141,7 +135,8 @@ class MFPlacesService {
       data['viewbox'] = viewbox.toJson();
     }
 
-    final response = await _ServicesChannel.invokeService('geocode#geocode', data);
+    final response =
+        await _ServicesChannel.invokeService('geocode#geocode', data);
     validateResponse(response);
 
     return toListGeocode(response!['result']);

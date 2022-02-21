@@ -25,7 +25,8 @@ class RouteResult implements MFRouteResult {
   final MFRouteDescriptionResult _duration;
   final List<MFLocationComponent> _snappedLocations;
 
-  RouteResult._(this._legs, this._encodedPolyline, this._summary, this._distance, this._duration, this._snappedLocations);
+  RouteResult._(this._legs, this._encodedPolyline, this._summary,
+      this._distance, this._duration, this._snappedLocations);
 
   static RouteResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {

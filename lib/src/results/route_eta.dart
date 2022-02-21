@@ -19,7 +19,8 @@ class RouteETAResult implements MFRouteETAResult {
   final MFRouteDescriptionResult _duration;
   final String _encodedPolyline;
 
-  RouteETAResult._(this._location, this._distance, this._duration, this._encodedPolyline);
+  RouteETAResult._(
+      this._location, this._distance, this._duration, this._encodedPolyline);
 
   static RouteETAResult? fromMap(Object? json) {
     if (json == null || json is! Map<dynamic, dynamic>) {
@@ -30,7 +31,12 @@ class RouteETAResult implements MFRouteETAResult {
     final location = MFLocationComponent.fromJson(json['location'])!;
 
     return RouteETAResult._(
-      alias == null ? location : MFLocationComponent(latitude: location.latitude, longitude: location.longitude, alias: alias),
+      alias == null
+          ? location
+          : MFLocationComponent(
+              latitude: location.latitude,
+              longitude: location.longitude,
+              alias: alias),
       RouteDescriptionResult.fromMap(json['distance'])!,
       RouteDescriptionResult.fromMap(json['duration'])!,
       json['polyline'],

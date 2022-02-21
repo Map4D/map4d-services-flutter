@@ -28,5 +28,4 @@ class RouteDescriptionResult implements MFRouteDescriptionResult {
 
   @override
   double get value => _value;
-
 }
