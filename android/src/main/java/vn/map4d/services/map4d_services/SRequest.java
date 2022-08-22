@@ -32,7 +32,7 @@ class SRequest {
     if (viewbox != null) {
       params.put("viewbox", viewbox);
     }
-    serviceOptionsBuilder.requestParams(params);
+    serviceOptionsBuilder.params(params);
     return serviceOptionsBuilder.build();
   }
 
@@ -73,7 +73,7 @@ class SRequest {
     if (datetime != null) {
       params.put("datetime", datetime);
     }
-    serviceOptionsBuilder.requestParams(params);
+    serviceOptionsBuilder.params(params);
     return serviceOptionsBuilder.build();
   }
 
@@ -112,7 +112,7 @@ class SRequest {
     if (datetime != null) {
       params.put("datetime", datetime);
     }
-    serviceOptionsBuilder.requestParams(params);
+    serviceOptionsBuilder.params(params);
     return serviceOptionsBuilder.build();
   }
 
@@ -146,7 +146,7 @@ class SRequest {
     if (datetime != null) {
       params.put("datetime", datetime);
     }
-    serviceOptionsBuilder.requestParams(params);
+    serviceOptionsBuilder.params(params);
     return serviceOptionsBuilder.build();
   }
 
@@ -170,7 +170,7 @@ class SRequest {
     if (location != null) {
       params.put("location", location);
     }
-    serviceOptionsBuilder.requestParams(params);
+    serviceOptionsBuilder.params(params);
     return serviceOptionsBuilder.build();
   }
 
@@ -222,7 +222,7 @@ class SRequest {
       params.put("avoidRoads", avoidRoads);
     }
 
-    serviceOptionsBuilder.requestParams(params);
+    serviceOptionsBuilder.params(params);
     return serviceOptionsBuilder.build();
   }
 
@@ -319,7 +319,7 @@ class SRequest {
       params.put("avoidRoads", avoidRoads);
     }
 
-    serviceOptionsBuilder.requestParams(params);
+    serviceOptionsBuilder.params(params);
     return serviceOptionsBuilder.build();
   }
 
@@ -361,7 +361,7 @@ class SRequest {
       params.put("avoidRoads", avoidRoads);
     }
 
-    serviceOptionsBuilder.requestParams(params);
+    serviceOptionsBuilder.params(params);
     return serviceOptionsBuilder.build();
   }
 }
