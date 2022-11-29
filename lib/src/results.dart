@@ -1,5 +1,6 @@
 export 'components.dart';
 export 'results/utils.dart';
+export 'results/polyline_utils.dart';
 
 export 'results/geocode.dart';
 export 'results/suggestion.dart';
