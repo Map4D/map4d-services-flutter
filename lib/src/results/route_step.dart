@@ -31,7 +31,7 @@ abstract class MFRouteStepResult {
   /// Travel mode
   MFTravelMode get mode;
 
-  //List<MFLocationComponent> get polyline;
+  List<MFLocationComponent> get polyline;
 }
 
 ///
@@ -46,9 +46,10 @@ class RouteStepResult implements MFRouteStepResult {
 
   final String _instructions;
   final String _maneuver;
-  final String _encodedPolyline; /* polyline */
   final String _streetName;
   final MFTravelMode _mode; /* travelMode */
+  final String _encodedPolyline; /* polyline */
+  List<MFLocationComponent>? _polyline;
 
   RouteStepResult._(
     this._distance,
@@ -87,9 +88,6 @@ class RouteStepResult implements MFRouteStepResult {
   MFRouteDescriptionResult get duration => _duration;
 
   @override
-  String get encodedPolyline => _encodedPolyline;
-
-  @override
   MFLocationComponent get endLocation => _endLocation;
 
   @override
@@ -106,4 +104,15 @@ class RouteStepResult implements MFRouteStepResult {
 
   @override
   String get streetName => _streetName;
+
+  @override
+  String get encodedPolyline => _encodedPolyline;
+
+  @override
+  List<MFLocationComponent> get polyline => _decodePolyline();
+
+  List<MFLocationComponent> _decodePolyline() {
+    _polyline ??= decodePolyline(_encodedPolyline);
+    return _polyline!;
+  }
 }

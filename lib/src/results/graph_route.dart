@@ -7,8 +7,7 @@ abstract class MFGraphRouteResult {
   MFRouteDescriptionResult get distance;
   MFRouteDescriptionResult get duration;
   String get encodedPolyline; /* polyline */
-
-  //List<MFLocationComponent> get polyline;
+  List<MFLocationComponent> get polyline;
 }
 
 ///
@@ -18,6 +17,7 @@ class GraphRouteResult implements MFGraphRouteResult {
   final MFRouteDescriptionResult _distance;
   final MFRouteDescriptionResult _duration;
   final String _encodedPolyline;
+  List<MFLocationComponent>? _polyline;
 
   GraphRouteResult._(
       this._id, this._distance, this._duration, this._encodedPolyline);
@@ -36,6 +36,9 @@ class GraphRouteResult implements MFGraphRouteResult {
   }
 
   @override
+  String get id => _id;
+
+  @override
   MFRouteDescriptionResult get distance => _distance;
 
   @override
@@ -45,5 +48,10 @@ class GraphRouteResult implements MFGraphRouteResult {
   String get encodedPolyline => _encodedPolyline;
 
   @override
-  String get id => _id;
+  List<MFLocationComponent> get polyline => _decodePolyline();
+
+  List<MFLocationComponent> _decodePolyline() {
+    _polyline ??= decodePolyline(_encodedPolyline);
+    return _polyline!;
+  }
 }

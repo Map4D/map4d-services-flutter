@@ -7,8 +7,7 @@ abstract class MFRouteETAResult {
   MFRouteDescriptionResult get distance;
   MFRouteDescriptionResult get duration;
   String get encodedPolyline;
-
-  //List<MFLocationComponent> get polyline;
+  List<MFLocationComponent> get polyline;
 }
 
 ///
@@ -18,6 +17,7 @@ class RouteETAResult implements MFRouteETAResult {
   final MFRouteDescriptionResult _distance;
   final MFRouteDescriptionResult _duration;
   final String _encodedPolyline;
+  List<MFLocationComponent>? _polyline;
 
   RouteETAResult._(
       this._location, this._distance, this._duration, this._encodedPolyline);
@@ -44,6 +44,9 @@ class RouteETAResult implements MFRouteETAResult {
   }
 
   @override
+  MFLocationComponent get location => _location;
+
+  @override
   MFRouteDescriptionResult get distance => _distance;
 
   @override
@@ -53,5 +56,10 @@ class RouteETAResult implements MFRouteETAResult {
   String get encodedPolyline => _encodedPolyline;
 
   @override
-  MFLocationComponent get location => _location;
+  List<MFLocationComponent> get polyline => _decodePolyline();
+
+  List<MFLocationComponent> _decodePolyline() {
+    _polyline ??= decodePolyline(_encodedPolyline);
+    return _polyline!;
+  }
 }

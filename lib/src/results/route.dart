@@ -5,13 +5,13 @@ import '../results.dart';
 ///
 abstract class MFRouteResult {
   List<MFRouteLegResult> get legs;
-  String get encodedPolyline; /* overviewPolyline */
   String get summary;
   MFRouteDescriptionResult get distance;
   MFRouteDescriptionResult get duration;
   List<MFLocationComponent> get snappedLocations; /* snappedWaypoints */
 
-  //List<MFLocationComponent> get polyline;
+  String get encodedPolyline; /* overviewPolyline */
+  List<MFLocationComponent> get polyline;
 }
 
 ///
@@ -19,11 +19,12 @@ abstract class MFRouteResult {
 ///
 class RouteResult implements MFRouteResult {
   final List<MFRouteLegResult> _legs;
-  final String _encodedPolyline;
   final String _summary;
   final MFRouteDescriptionResult _distance;
   final MFRouteDescriptionResult _duration;
   final List<MFLocationComponent> _snappedLocations;
+  final String _encodedPolyline;
+  List<MFLocationComponent>? _polyline;
 
   RouteResult._(this._legs, this._encodedPolyline, this._summary,
       this._distance, this._duration, this._snappedLocations);
@@ -50,9 +51,6 @@ class RouteResult implements MFRouteResult {
   MFRouteDescriptionResult get duration => _duration;
 
   @override
-  String get encodedPolyline => _encodedPolyline;
-
-  @override
   List<MFRouteLegResult> get legs => _legs;
 
   @override
@@ -60,4 +58,15 @@ class RouteResult implements MFRouteResult {
 
   @override
   String get summary => _summary;
+
+  @override
+  String get encodedPolyline => _encodedPolyline;
+
+  @override
+  List<MFLocationComponent> get polyline => _decodePolyline();
+
+  List<MFLocationComponent> _decodePolyline() {
+    _polyline ??= decodePolyline(_encodedPolyline);
+    return _polyline!;
+  }
 }
