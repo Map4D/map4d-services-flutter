@@ -4,15 +4,13 @@ import 'package:map4d_services/map4d_services.dart';
 import './directions_to_routes.dart';
 
 class RoutesDirections extends StatefulWidget {
-  
-  const RoutesDirections({Key? key}): super(key: key);
+  const RoutesDirections({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _RoutesDirectionsState();
 }
 
 class _RoutesDirectionsState extends State<RoutesDirections> {
-
   late MFMapViewController _controller;
   final List<MFLocationComponent> _locations = <MFLocationComponent>[];
 
@@ -38,7 +36,8 @@ class _RoutesDirectionsState extends State<RoutesDirections> {
     );
     setState(() {
       markers[markerId] = marker;
-      _locations.add(MFLocationComponent(latitude: target.latitude, longitude: target.longitude));
+      _locations.add(MFLocationComponent(
+          latitude: target.latitude, longitude: target.longitude));
     });
   }
 
@@ -47,14 +46,18 @@ class _RoutesDirectionsState extends State<RoutesDirections> {
     final destination = _locations.last;
     final waypoints = _locations.sublist(1, _locations.length - 1);
     try {
-      final directions = await MFServices.routes.fetchDirections(origin, destination, waypoints: waypoints.isNotEmpty ? waypoints : null);
+      final directions = await MFServices.routes.fetchDirections(
+          origin, destination,
+          waypoints: waypoints.isNotEmpty ? waypoints : null);
       final routes = routesFromDirections(directions);
       final directionsRenderer = MFDirectionsRenderer(
         rendererId: const MFDirectionsRendererId('renderer_id'),
         routes: routes,
         activedIndex: 1,
-        originPOIOptions: MFDirectionsPOIOptions(position: MFLatLng(origin.latitude, origin.longitude)),
-        destinationPOIOptions: MFDirectionsPOIOptions(position: MFLatLng(destination.latitude, destination.longitude)),
+        originPOIOptions: MFDirectionsPOIOptions(
+            position: MFLatLng(origin.latitude, origin.longitude)),
+        destinationPOIOptions: MFDirectionsPOIOptions(
+            position: MFLatLng(destination.latitude, destination.longitude)),
       );
       setState(() {
         markers.clear();
@@ -119,8 +122,10 @@ class _RoutesDirectionsState extends State<RoutesDirections> {
 
   Future<void> _createMarkerImageFromAsset(BuildContext context) async {
     if (_targetMarkerIcon == null) {
-      final ImageConfiguration imageConfiguration = createLocalImageConfiguration(context, size: const Size.square(48));
-      _targetMarkerIcon = await MFBitmap.fromAssetImage(imageConfiguration, 'assets/target.png');
+      final ImageConfiguration imageConfiguration =
+          createLocalImageConfiguration(context, size: const Size.square(48));
+      _targetMarkerIcon = await MFBitmap.fromAssetImage(
+          imageConfiguration, 'assets/target.png');
 
       targetMarkerId = const MFMarkerId('target_marker');
       targetMarker = MFMarker(

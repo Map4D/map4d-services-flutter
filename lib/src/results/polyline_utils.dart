@@ -3,7 +3,8 @@ import 'dart:math' as math show pow;
 
 ///
 ///
-List<MFLocationComponent> decodePolyline(String polyline, {int accuracyExponent = 5}) {
+List<MFLocationComponent> decodePolyline(String polyline,
+    {int accuracyExponent = 5}) {
   final accuracyMultiplier = math.pow(10, accuracyExponent);
   final List<MFLocationComponent> coordinates = [];
 
@@ -47,7 +48,9 @@ List<MFLocationComponent> decodePolyline(String polyline, {int accuracyExponent 
     lat += getCoordinate();
     lng += getCoordinate();
 
-    coordinates.add(MFLocationComponent(latitude: lat / accuracyMultiplier, longitude: lng / accuracyMultiplier));
+    coordinates.add(MFLocationComponent(
+        latitude: lat / accuracyMultiplier,
+        longitude: lng / accuracyMultiplier));
   }
 
   return coordinates;
