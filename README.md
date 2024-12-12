@@ -15,7 +15,7 @@ To use this plugin, add `map4d_services` as a dependency in your `pubspec.yaml` 
 
 ```yaml
 dependencies:
-  map4d_services: ^1.1.0
+  map4d_services: ^1.1.1
 ```
 
 Or run command
