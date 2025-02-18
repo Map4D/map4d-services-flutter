@@ -94,42 +94,12 @@
   return request;
 }
 
-+ (MFServiceRequest *)buildRouteETARequestWithData:(NSDictionary *)data {
-  MFServiceRequest *request = [[MFServiceRequest alloc] initWithPath:@"/sdk/route/eta"];
-  
-  NSArray<MFLocationComponent *> *origins = [SConverter toLocationComponentArray:data[@"origins"]];
-  MFLocationComponent *destination = [SConverter toLocationComponent:data[@"destination"]];
-  MFRouteETAParams *params = [[MFRouteETAParams alloc] initWithOrigins:origins destination:destination];
-  params.mode = [SConverter toTravelMode:data[@"mode"]];
-  params.language = [SConverter toLanguageResult:data[@"language"]];
-  params.weighting = [SConverter toRouteWeighting:data[@"weighting"]];
-  params.restriction = [SConverter toRouteRestriction:data[@"restriction"]];
-  
-  request.params = params;
-  request.method = MFRequestMethodPost;
-  return request;
-}
-
 + (MFServiceRequest *)buildDistanceMatrixRequestWithData:(NSDictionary *)data {
   MFServiceRequest *request = [[MFServiceRequest alloc] initWithPath:@"/sdk/route/matrix"];
   
   NSArray<MFLocationComponent *> *origins = [SConverter toLocationComponentArray:data[@"origins"]];
   NSArray<MFLocationComponent *> *destinations = [SConverter toLocationComponentArray:data[@"destinations"]];
   MFDistanceMatrixParams *params = [[MFDistanceMatrixParams alloc] initWithOrigins:origins destinations:destinations];
-  params.mode = [SConverter toTravelMode:data[@"mode"]];
-  params.language = [SConverter toLanguageResult:data[@"language"]];
-  params.weighting = [SConverter toRouteWeighting:data[@"weighting"]];
-  params.restriction = [SConverter toRouteRestriction:data[@"restriction"]];
-  
-  request.params = params;
-  return request;
-}
-
-+ (MFServiceRequest *)buildGraphRouteRequestWithData:(NSDictionary *)data {
-  MFServiceRequest *request = [[MFServiceRequest alloc] initWithPath:@"/sdk/route/graph"];
-  
-  NSArray<MFLocationComponent *> *points = [SConverter toLocationComponentArray:data[@"points"]];
-  MFGraphRouteParams *params = [[MFGraphRouteParams alloc] initWithLocations:points];
   params.mode = [SConverter toTravelMode:data[@"mode"]];
   params.language = [SConverter toLanguageResult:data[@"language"]];
   params.weighting = [SConverter toRouteWeighting:data[@"weighting"]];

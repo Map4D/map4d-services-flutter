@@ -28,11 +28,7 @@
 
 + (MFServiceRequest *)buildDirectionsRequestWithData:(NSDictionary *)data;
 
-+ (MFServiceRequest *)buildRouteETARequestWithData:(NSDictionary *)data;
-
 + (MFServiceRequest *)buildDistanceMatrixRequestWithData:(NSDictionary *)data;
-
-+ (MFServiceRequest *)buildGraphRouteRequestWithData:(NSDictionary *)data;
 
 @end
 
