@@ -124,35 +124,6 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  void _routeETA() async {
-    List<MFRouteType> routeTypes = <MFRouteType>[
-      MFRouteType.motorway,
-      MFRouteType.tunnel
-    ];
-    List<MFLocationComponent> origins = <MFLocationComponent>[
-      const MFLocationComponent(
-          latitude: 16.039173, longitude: 108.210912, alias: "alias1"),
-      const MFLocationComponent(
-          latitude: 16.039402, longitude: 108.211080, alias: 'alias2')
-    ];
-
-    MFRouteRestriction restriction = MFRouteRestriction.restrictCircleArea(
-        const MFLocationComponent(latitude: 16.044597, longitude: 108.217263),
-        30,
-        types: routeTypes);
-
-    try {
-      final etas = await MFServices.routes.fetchRouteETA(
-          origins,
-          const MFLocationComponent(
-              latitude: 16.0825981, longitude: 108.2219887),
-          restriction: restriction);
-      print('ETAs: $etas');
-    } on MFServiceError catch (error) {
-      print('Route ETA Error: ${error.code}, ${error.message}');
-    }
-  }
-
   void _routeMatrix() async {
     List<MFRouteType> routeTypes = <MFRouteType>[
       MFRouteType.motorway,
@@ -178,30 +149,6 @@ class _MyAppState extends State<MyApp> {
         .then((matrix) => print('Matrix: $matrix'))
         .onError<MFServiceError>((error, stackTrace) =>
             print('Matrix Error: ${error.code}, ${error.message}'));
-  }
-
-  void _routeGraph() async {
-    List<MFRouteType> routeTypes = <MFRouteType>[
-      MFRouteType.motorway,
-      MFRouteType.tunnel
-    ];
-    List<MFLocationComponent> points = <MFLocationComponent>[
-      const MFLocationComponent(
-          latitude: 16.08116088350121, longitude: 108.21979357460582),
-      const MFLocationComponent(
-          latitude: 16.08334260545329, longitude: 108.21651589082553)
-    ];
-    MFRouteRestriction restriction = MFRouteRestriction.restrictCircleArea(
-        const MFLocationComponent(latitude: 16.080611, longitude: 108.218113),
-        30,
-        types: routeTypes);
-    try {
-      final graph = await MFServices.routes
-          .fetchGraphRoute(points, restriction: restriction);
-      print('Graph: $graph');
-    } on MFServiceError catch (error) {
-      print('Graph Route Error: ${error.code}, ${error.message}');
-    }
   }
 
   @override
@@ -250,18 +197,8 @@ class _MyAppState extends State<MyApp> {
             ),
             ListTile(
               leading: const Icon(Icons.edit_road),
-              title: const Text('Route ETA'),
-              onTap: _routeETA,
-            ),
-            ListTile(
-              leading: const Icon(Icons.edit_road),
               title: const Text('Route Matrix'),
               onTap: _routeMatrix,
-            ),
-            ListTile(
-              leading: const Icon(Icons.edit_road),
-              title: const Text('Route Graph'),
-              onTap: _routeGraph,
             ),
           ],
         ),
