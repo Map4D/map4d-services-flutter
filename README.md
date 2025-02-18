@@ -7,7 +7,7 @@ A flutter plugin for integrating [Map4D Services](https://api.map4d.vn/sdk/docs/
 
 ## Requirements
 - Android SDK 21+
-- iOS 9.3+
+- iOS 11.0+
 
 ## Installing
 
@@ -15,7 +15,7 @@ To use this plugin, add `map4d_services` as a dependency in your `pubspec.yaml` 
 
 ```yaml
 dependencies:
-  map4d_services: ^1.1.1
+  map4d_services: ^1.2.0
 ```
 
 Or run command

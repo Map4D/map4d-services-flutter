@@ -1,3 +1,12 @@
+## 1.2.0
+
+* Methods `fetchRouteETA` and `fetchGraphRoute` are no longer supported
+* [iOS] Remove bitcode
+
+## 1.1.1
+
+* [Android] Change compileSdkVersion from 30 to 31
+
 ## 1.1.0
 
 * Support get polyline as list location component from encoded polyline for directions results

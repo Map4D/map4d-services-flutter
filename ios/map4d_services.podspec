@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'map4d_services'
-  s.version          = '1.1.0'
+  s.version          = '1.2.0'
   s.summary          = 'Map4dServices for flutter.'
   s.description      = <<-DESC
 A flutter plugin for integrating Map4D Services in iOS and Android applications.
