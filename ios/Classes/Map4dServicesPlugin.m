@@ -56,21 +56,9 @@
     return;
   }
   
-  /* Route | ETA */
-  if ([@"route#eta" isEqualToString:call.method]) {
-    [SClient fireRequest:[SRequest buildRouteETARequestWithData:call.arguments] result:result];
-    return;
-  }
-  
   /* Route | Matrix */
   if ([@"route#matrix" isEqualToString:call.method]) {
     [SClient fireRequest:[SRequest buildDistanceMatrixRequestWithData:call.arguments] result:result];
-    return;
-  }
-  
-  /* Route | Graph */
-  if ([@"route#graph" isEqualToString:call.method]) {
-    [SClient fireRequest:[SRequest buildGraphRouteRequestWithData:call.arguments] result:result];
     return;
   }
   

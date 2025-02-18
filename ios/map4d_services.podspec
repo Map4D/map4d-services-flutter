@@ -9,7 +9,7 @@ A flutter plugin for integrating Map4D Services in iOS and Android applications.
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'IOTLink' => 'admin@iotlink.com.vn' }
   s.source           = { :path => '.' }
-  s.platform         = :ios, '9.3'
+  s.platform         = :ios, '11.0'
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
@@ -17,5 +17,5 @@ A flutter plugin for integrating Map4D Services in iOS and Android applications.
   s.public_header_files = 'Classes/**/*.h'
 
   s.dependency 'Flutter'
-  s.dependency 'Map4dServices', '~> 2.0.0'
+  s.dependency 'Map4dServices', '~> 2.4.0'
 end
