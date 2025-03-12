@@ -1,3 +1,7 @@
+## 1.2.1
+
+* [iOS] Support arm64 simulator
+
 ## 1.2.0
 
 * Methods `fetchRouteETA` and `fetchGraphRoute` are no longer supported
