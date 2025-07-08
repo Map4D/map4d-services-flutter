@@ -1,3 +1,7 @@
+## 1.2.2
+
+* [Android] Support AGP v8
+
 ## 1.2.1
 
 * [iOS] Support arm64 simulator
